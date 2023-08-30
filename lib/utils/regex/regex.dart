@@ -1,0 +1,1 @@
+final regexFileName = RegExp(r'/["\*\/:<>\?\\\|]/');
