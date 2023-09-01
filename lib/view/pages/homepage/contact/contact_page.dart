@@ -15,6 +15,7 @@ class _ContactPageState extends State<ContactPage> {
   Widget build(BuildContext context) {
     // final textTheme = Theme.of(context).textTheme;
     return AdaptiveLayout(
+      bodySmall: (context, constraint, screenSize) => SizedBox(height: 100,),
       bodyLarge: (context, pageConstraint, layout) {
         return ContactPageLarge(layout: layout, pageConstraint: pageConstraint);
         // return Column(

@@ -115,6 +115,7 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
 
   @override
   Widget build(BuildContext context) {
+    print("viewpadding top ${MediaQuery.of(context).viewPadding.top}");
     // final textTheme = Theme.of(context).textTheme;
     return AdaptiveLayout(bodyLarge: (context, screenConstraint, layout) {
       // print('layout $layout');
@@ -123,12 +124,14 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
       return Scaffold(
         key: _scaffoldKey,
         extendBodyBehindAppBar: true,
-        appBar: _showAppBar
-            ? appbarNavigation(layout != Layout.large, context)
-            : null,
+        appBar: _showAppBar ? appbarNavigation(context, layout) : null,
         endDrawer: Padding(
-          padding: EdgeInsets.only(top: 60.h),
-          child: drawer(layout != Layout.small ? 450.w : null),
+          padding: EdgeInsets.only(
+            top: layout != Layout.small
+                ? 60.h
+                : kToolbarHeight + MediaQuery.of(context).padding.top,
+          ),
+          child: drawer(layout),
         ),
         onEndDrawerChanged: (isOpened) {
           setState(() {
@@ -189,7 +192,7 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
                 AboutPage(
                   key: _aboutmeKey,
                   appBarHeight:
-                      appbarNavigation(false, context).preferredSize.height,
+                      appbarNavigation(context, layout).preferredSize.height,
                 ),
                 ExpertisePage(
                   key: _expertiseKey,
@@ -208,6 +211,191 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
           ),
         ),
       );
+    });
+  }
+
+  AppBar appbarNavigation(BuildContext context, Layout layout) {
+    return AppBar(
+      title: Padding(
+        padding:
+            EdgeInsets.only(left: layout != Layout.small ? 80.w : 0, top: 10.h),
+        child: Image.asset(
+          'assets/images/logo_no_bg.png',
+          height: layout != Layout.small ? 80.h : kToolbarHeight,
+        ),
+      ),
+      backgroundColor: kccTransparent,
+      toolbarHeight: layout != Layout.small ? 80.h : kToolbarHeight,
+      actions: layout != Layout.large
+          ? [
+              IconButton(
+                alignment: Alignment.center,
+                iconSize: layout != Layout.small ? 48.w : 36.w,
+                splashRadius: layout != Layout.small ? 60 : 25,
+                padding: EdgeInsets.all(5.w),
+                onPressed: () {
+                  //Scaffold.of(context).openEndDrawer();
+                  if (!_isPlay) {
+                    _animationController.forward();
+                    _isPlay = true;
+                  } else {
+                    _animationController.reverse();
+                    _isPlay = false;
+                  }
+                  _scaffoldKey.currentState!.openEndDrawer();
+                },
+                icon: AnimatedIcon(
+                  progress: _animationController,
+                  icon: AnimatedIcons.menu_close,
+                  size: layout != Layout.small ? 48.w : 36.w,
+                ),
+              ),
+              gapwr(w: 20)
+            ]
+          : listNavigationButton(
+              // textTheme.headlineSmall?.copyWith(
+              //   fontWeight: kcfregular,
+              //   fontSize: 24.sp,
+              // ),
+              kcfLHeadlineSmall()),
+    );
+  }
+
+  Drawer drawer(Layout layout) {
+    //final textTheme = Theme.of(context).textTheme;
+    return Drawer(
+      backgroundColor: kccOnPrimary,
+      elevation: 3,
+      width: layout != Layout.small ? 450.w : null,
+      child: Padding(
+        padding: EdgeInsets.symmetric(horizontal: 30.w, vertical: 20.h),
+        child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+          ...listNavigationButton(
+                  kcfLDisplayMedium().copyWith(fontSize: 30.sp)
+                  // textTheme.displayMedium
+                  //     ?.copyWith(fontWeight: kcfregular, fontSize: 30.sp),
+                  )
+              .map(
+                (e) => Padding(
+                  padding: EdgeInsets.only(bottom: 20.h),
+                  child: e,
+                ),
+              )
+              .toList(),
+        ]),
+      ),
+    );
+  }
+
+  // List<Widget> actionNavigationList() {
+  //   final textTheme = Theme.of(context).textTheme;
+  //   return listNavigationButton(
+  //     textTheme.bodyMedium?.copyWith(fontWeight: kcfregular, fontSize: 18.sp),
+  //   );
+  // }
+
+  List<Widget> listNavigationButton(TextStyle? style,
+      {bool isExpanded = false}) {
+    return [
+      SizedBox(
+        width: isExpanded ? double.maxFinite : null,
+        child: TextButton(
+          onPressed: () {
+            if (_scaffoldKey.currentState != null) {
+              if (_scaffoldKey.currentState!.isEndDrawerOpen) {
+                _scaffoldKey.currentState?.closeEndDrawer();
+              }
+            }
+            scrolltowidget(_aboutmeKey);
+          },
+          child: Text(
+            'About Me',
+            style: style,
+          ),
+        ),
+      ),
+      SizedBox(
+        width: isExpanded ? double.maxFinite : null,
+        child: TextButton(
+          onPressed: () {
+            if (_scaffoldKey.currentState != null) {
+              if (_scaffoldKey.currentState!.isEndDrawerOpen) {
+                _scaffoldKey.currentState?.closeEndDrawer();
+              }
+            }
+            scrolltowidget(_expertiseKey);
+          },
+          child: Text(
+            'Expertise',
+            style: style,
+          ),
+        ),
+      ),
+      SizedBox(
+        width: isExpanded ? double.maxFinite : null,
+        child: TextButton(
+          onPressed: () {
+            if (_scaffoldKey.currentState != null) {
+              if (_scaffoldKey.currentState!.isEndDrawerOpen) {
+                _scaffoldKey.currentState?.closeEndDrawer();
+              }
+            }
+            scrolltowidget(_qualificationKey);
+          },
+          child: Text(
+            'Qualification',
+            style: style,
+          ),
+        ),
+      ),
+      SizedBox(
+        width: isExpanded ? double.maxFinite : null,
+        child: TextButton(
+          onPressed: () {
+            if (_scaffoldKey.currentState != null) {
+              if (_scaffoldKey.currentState!.isEndDrawerOpen) {
+                _scaffoldKey.currentState?.closeEndDrawer();
+              }
+            }
+            scrolltowidget(_projectKey);
+          },
+          child: Text(
+            'Project',
+            style: style,
+          ),
+        ),
+      ),
+      SizedBox(
+        width: isExpanded ? double.maxFinite : null,
+        child: TextButton(
+          onPressed: () {
+            if (_scaffoldKey.currentState != null) {
+              if (_scaffoldKey.currentState!.isEndDrawerOpen) {
+                _scaffoldKey.currentState?.closeEndDrawer();
+              }
+            }
+            scrolltowidget(_contactKey);
+          },
+          child: Text(
+            'Contact',
+            style: style,
+          ),
+        ),
+      ),
+    ];
+  }
+
+  void _scrollToItem(double height) {
+    _scrollController.animateTo(
+      height, // Adjust the height according to your item height.
+      duration: const Duration(milliseconds: 200),
+      curve: Curves.easeInOut,
+    );
+  }
+
+  void onProgress(double val) {
+    setState(() {
+      progress = val;
     });
   }
 
@@ -487,7 +675,7 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
                     border: Border.all(color: kccWhite),
                     borderRadius: BorderRadius.circular(10),
                   ),
-                  overlayColor: MaterialStateProperty.all<Color>(kccblack4),
+                  overlayColor: MaterialStateProperty.all<Color>(kccBlack4),
                 ),
                 menuItemStyleData: const MenuItemStyleData(
                     //padding: EdgeInsets.symmetric(horizontal: 50.w),
@@ -596,235 +784,5 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
         ],
       ),
     );
-  }
-
-  AppBar appbarNavigation(bool showDrawer, BuildContext context) {
-    final textTheme = Theme.of(context).textTheme;
-    return AppBar(
-      title: Padding(
-        padding: EdgeInsets.only(left: 80.w, top: 10.h),
-        child: Image.asset(
-          'assets/images/logo_no_bg.png',
-          height: 80.h,
-        ),
-      ),
-      backgroundColor: kccTransparent,
-      toolbarHeight: 80.h,
-      actions: showDrawer
-          ? [
-              IconButton(
-                alignment: Alignment.center,
-                iconSize: 48.w,
-                splashRadius: 60,
-                padding: EdgeInsets.all(5.w),
-                onPressed: () {
-                  //Scaffold.of(context).openEndDrawer();
-                  if (!_isPlay) {
-                    _animationController.forward();
-                    _isPlay = true;
-                  } else {
-                    _animationController.reverse();
-                    _isPlay = false;
-                  }
-                  _scaffoldKey.currentState!.openEndDrawer();
-                },
-                icon: AnimatedIcon(
-                  progress: _animationController,
-                  icon: AnimatedIcons.menu_close,
-                  size: 48.w,
-                ),
-              ),
-              gapwr(w: 20)
-            ]
-          : listNavigationButton(textTheme.headlineSmall
-              ?.copyWith(fontWeight: kcfregular, fontSize: 24.sp)),
-    );
-  }
-
-  SliverAppBar sliverAppbarNavigation(bool showDrawer, BuildContext context) {
-    final textTheme = Theme.of(context).textTheme;
-    return SliverAppBar(
-      floating: true,
-      snap: true,
-      title: Padding(
-        padding: EdgeInsets.only(left: 80.w, top: 10.h),
-        child: Image.asset(
-          'assets/images/logo_no_bg.png',
-          height: 80.h,
-        ),
-      ),
-      // backgroundColor: kccWhite,
-      // shadowColor: kccTransparent,
-      elevation: 0,
-      // expandedHeight: 80.h,
-      forceMaterialTransparency: true,
-
-      toolbarHeight: 80.h,
-      actions: showDrawer
-          ? [
-              IconButton(
-                alignment: Alignment.center,
-                iconSize: 48.w,
-                splashRadius: 60,
-                padding: EdgeInsets.all(5.w),
-                onPressed: () {
-                  //Scaffold.of(context).openEndDrawer();
-                  if (!_isPlay) {
-                    _animationController.forward();
-                    _isPlay = true;
-                  } else {
-                    _animationController.reverse();
-                    _isPlay = false;
-                  }
-                  _scaffoldKey.currentState!.openEndDrawer();
-                },
-                icon: AnimatedIcon(
-                  progress: _animationController,
-                  icon: AnimatedIcons.menu_close,
-                  size: 48.w,
-                ),
-              ),
-              gapwr(w: 20)
-            ]
-          : listNavigationButton(textTheme.bodyMedium
-              ?.copyWith(fontWeight: kcfregular, fontSize: 18.sp)),
-    );
-  }
-
-  Drawer drawer(double? width) {
-    final textTheme = Theme.of(context).textTheme;
-    return Drawer(
-      backgroundColor: kccOnPrimary,
-      elevation: 3,
-      width: width,
-      child: Padding(
-        padding: EdgeInsets.symmetric(horizontal: 30.w, vertical: 20.h),
-        child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-          ...listNavigationButton(
-            textTheme.displayMedium
-                ?.copyWith(fontWeight: kcfregular, fontSize: 30.sp),
-          )
-              .map(
-                (e) => Padding(
-                  padding: EdgeInsets.only(bottom: 20.h),
-                  child: e,
-                ),
-              )
-              .toList(),
-        ]),
-      ),
-    );
-  }
-
-  // List<Widget> actionNavigationList() {
-  //   final textTheme = Theme.of(context).textTheme;
-  //   return listNavigationButton(
-  //     textTheme.bodyMedium?.copyWith(fontWeight: kcfregular, fontSize: 18.sp),
-  //   );
-  // }
-
-  List<Widget> listNavigationButton(TextStyle? style,
-      {bool isExpanded = false}) {
-    return [
-      SizedBox(
-        width: isExpanded ? double.maxFinite : null,
-        child: TextButton(
-          onPressed: () {
-            if (_scaffoldKey.currentState != null) {
-              if (_scaffoldKey.currentState!.isEndDrawerOpen) {
-                _scaffoldKey.currentState?.closeEndDrawer();
-              }
-            }
-            scrolltowidget(_aboutmeKey);
-          },
-          child: Text(
-            'ABOUT ME',
-            style: style,
-          ),
-        ),
-      ),
-      SizedBox(
-        width: isExpanded ? double.maxFinite : null,
-        child: TextButton(
-          onPressed: () {
-            if (_scaffoldKey.currentState != null) {
-              if (_scaffoldKey.currentState!.isEndDrawerOpen) {
-                _scaffoldKey.currentState?.closeEndDrawer();
-              }
-            }
-            scrolltowidget(_expertiseKey);
-          },
-          child: Text(
-            'EXPERTISE',
-            style: style,
-          ),
-        ),
-      ),
-      SizedBox(
-        width: isExpanded ? double.maxFinite : null,
-        child: TextButton(
-          onPressed: () {
-            if (_scaffoldKey.currentState != null) {
-              if (_scaffoldKey.currentState!.isEndDrawerOpen) {
-                _scaffoldKey.currentState?.closeEndDrawer();
-              }
-            }
-            scrolltowidget(_qualificationKey);
-          },
-          child: Text(
-            'QUALIFICATION',
-            style: style,
-          ),
-        ),
-      ),
-      SizedBox(
-        width: isExpanded ? double.maxFinite : null,
-        child: TextButton(
-          onPressed: () {
-            if (_scaffoldKey.currentState != null) {
-              if (_scaffoldKey.currentState!.isEndDrawerOpen) {
-                _scaffoldKey.currentState?.closeEndDrawer();
-              }
-            }
-            scrolltowidget(_projectKey);
-          },
-          child: Text(
-            'PROJECT',
-            style: style,
-          ),
-        ),
-      ),
-      SizedBox(
-        width: isExpanded ? double.maxFinite : null,
-        child: TextButton(
-          onPressed: () {
-            if (_scaffoldKey.currentState != null) {
-              if (_scaffoldKey.currentState!.isEndDrawerOpen) {
-                _scaffoldKey.currentState?.closeEndDrawer();
-              }
-            }
-            scrolltowidget(_contactKey);
-          },
-          child: Text(
-            'CONTACT',
-            style: style,
-          ),
-        ),
-      ),
-    ];
-  }
-
-  void _scrollToItem(double height) {
-    _scrollController.animateTo(
-      height, // Adjust the height according to your item height.
-      duration: const Duration(milliseconds: 200),
-      curve: Curves.easeInOut,
-    );
-  }
-
-  void onProgress(double val) {
-    setState(() {
-      progress = val;
-    });
   }
 }

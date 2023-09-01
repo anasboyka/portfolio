@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:portfolio/view/pages/homepage/about/layout/about_page_large.dart';
+import 'package:portfolio/view/pages/homepage/about/layout/about_page_small.dart';
 import 'package:portfolio/view/widgets/layout/adaptive_layout.dart';
 
 class AboutPage extends StatelessWidget {
@@ -9,16 +10,12 @@ class AboutPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AdaptiveLayout(
-        // bodySmall: (context, constraint, layout) => Center(
-        //       child: Text(
-        //         'small',
-        //         style: textTheme.bodyLarge,
-        //       ),
-        //     ),
+        bodySmall: (context, constraint, layout) =>
+            AboutPageSmall(appBarHeight: appBarHeight),
         // bodyMedium: (context, constraint, layout) => const SizedBox(),
         bodyLarge: (context, constraint, layout) {
-      return AboutPageLarge(appBarHeight: appBarHeight);
-    });
+          return AboutPageLarge(appBarHeight: appBarHeight);
+        });
   }
 
   // Row skillBar(TextTheme textTheme, String title, double val) {

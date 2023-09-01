@@ -29,12 +29,12 @@ const kccgrey9 = Color(0xffA7A7A7);
 const kccgrey10 = Color(0xffA7A7A7);
 
 //black
-const kccblack1 = Color(0xff343434);
-const kccblack2 = Color(0xffB1B3B4);
-const kccblack3 = Color(0xff020202);
-const kccblack4 = Color(0xff555555);
-const kccblack5 = Color(0xffB1B3B4);
-const kccblack6 = Color(0xffB1B3B4);
+const kccBlack1 = Color(0xff343434);
+const kccBlack2 = Color(0xffB1B3B4);
+const kccBlack3 = Color(0xff020202);
+const kccBlack4 = Color(0xff555555);
+const kccBlack5 = Color(0xffB1B3B4);
+const kccBlack6 = Color(0xffB1B3B4);
 
 //white
 const kccTransparent = Colors.transparent;

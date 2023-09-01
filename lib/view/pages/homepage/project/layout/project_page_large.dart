@@ -13,20 +13,21 @@ class ProjectPageLarge extends StatefulWidget {
 class _ProjectPageLargeState extends State<ProjectPageLarge> {
   @override
   Widget build(BuildContext context) {
-    final textTheme = Theme.of(context).textTheme;
+    // final textTheme = Theme.of(context).textTheme;
     return DefaultTabController(
       length: 5,
       child: Column(
         children: [
           gaph(h: 20.h),
-          Text(
-            'Projects',
-            style: textTheme.displayLarge?.copyWith(fontSize: 50.sp),
-          ),
+          Text('Projects',
+              style: kcfLDisplayLarge().copyWith(fontWeight: kcfbold)
+              // textTheme.displayLarge?.copyWith(fontSize: 50.sp),
+              ),
           Text(
             "All of my completed projects",
-            style: textTheme.bodyMedium?.copyWith(
-                color: kccgrey1, fontWeight: kcfregular, fontSize: 20.sp),
+            style: kcfLBodyMedium().copyWith(color: kccgrey1),
+            // textTheme.bodyMedium?.copyWith(
+            //     color: kccgrey1, fontWeight: kcfregular, fontSize: 20.sp),
           ),
           gaph(h: 50.h),
           Padding(

@@ -7,22 +7,21 @@ class QualificationLarge extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final textTheme = Theme.of(context).textTheme;
+    // final textTheme = Theme.of(context).textTheme;
     return Container(
       width: double.maxFinite,
       color: kccSecondary,
       child: Column(
         children: [
           gaph(h: 20.h),
-          Text(
-            'Qualification',
-            style: textTheme.displayLarge?.copyWith(fontSize: 50.sp),
-          ),
-          Text(
-            "My Education & experience",
-            style: textTheme.bodyMedium?.copyWith(
-                color: kccWhite, fontWeight: kcfregular, fontSize: 20.sp),
-          ),
+          Text('Qualification',
+              style: kcfLDisplayLarge().copyWith(fontWeight: kcfbold)
+              // textTheme.displayLarge?.copyWith(fontSize: 50.sp),
+              ),
+          Text("My Education & experience", style: kcfLBodyMedium()
+              // textTheme.bodyMedium?.copyWith(
+              //     color: kccWhite, fontWeight: kcfregular, fontSize: 20.sp),
+              ),
           gaph(h: 17.h),
           Padding(
             padding: EdgeInsets.fromLTRB(100.w, 0, 100.w, 0),
@@ -34,7 +33,7 @@ class QualificationLarge extends StatelessWidget {
                 child: Row(
                   children: [
                     const Spacer(),
-                    educationDesign(textTheme),
+                    educationDesign(),
                     const Spacer(),
                     Padding(
                         padding: EdgeInsets.only(top: 104.w),
@@ -43,7 +42,7 @@ class QualificationLarge extends StatelessWidget {
                           color: kccSecondary,
                         )),
                     const Spacer(),
-                    experienceDesign(textTheme),
+                    experienceDesign(),
                     const Spacer(),
                   ],
                 ),
@@ -56,7 +55,7 @@ class QualificationLarge extends StatelessWidget {
     );
   }
 
-  SizedBox experienceDesign(TextTheme textTheme) {
+  SizedBox experienceDesign() {
     return SizedBox(
       width: 510.w,
       child: Column(
@@ -65,36 +64,33 @@ class QualificationLarge extends StatelessWidget {
           gaph(h: 44.h),
           Align(
             alignment: Alignment.center,
-            child: Text(
-              'Experience',
-              style: textTheme.displayMedium?.copyWith(
-                  fontWeight: kcfbold, color: kccPrimary, fontSize: 40.sp),
-            ),
+            child: Text('Experience',
+                style: kcfLDisplayMedium()
+                    .copyWith(color: kccPrimary, fontWeight: kcfbold)
+                // textTheme.displayMedium?.copyWith(
+                //     fontWeight: kcfbold, color: kccPrimary, fontSize: 40.sp),
+                ),
           ),
           gaph(h: 54.h),
           experienceContent(
-            textTheme,
             kcsExperience1Role,
             kcsExperience1Company,
             kcsExperience1Duration,
           ),
           gaph(h: 50.h),
           experienceContent(
-            textTheme,
             kcsExperience2Role,
             kcsExperience2Company,
             kcsExperience2Duration,
           ),
           gaph(h: 50.h),
           experienceContent(
-            textTheme,
             kcsExperience3Role,
             kcsExperience3Company,
             kcsExperience3Duration,
           ),
           gaph(h: 50.h),
           experienceContent(
-            textTheme,
             kcsExperience4Role,
             kcsExperience4Company,
             kcsExperience4Duration,
@@ -105,36 +101,37 @@ class QualificationLarge extends StatelessWidget {
     );
   }
 
-  Column experienceContent(
-      TextTheme textTheme, String role, String company, String duration) {
+  Column experienceContent(String role, String company, String duration) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
           role,
-          style: textTheme.headlineSmall
-              ?.copyWith(color: kccPrimary, fontSize: 28.sp),
+          style: kcfLHeadlineMedium().copyWith(color: kccPrimary),
+          // textTheme.headlineSmall
+          //     ?.copyWith(color: kccPrimary, fontSize: 28.sp),
         ),
         gaph(h: 12.h),
         Text(
           company,
-          style: textTheme.bodyMedium?.copyWith(
-              color: kccBlack,
-              fontStyle: FontStyle.italic,
-              fontWeight: kcfregular,
-              fontSize: 20.sp),
+          style: kcfLBodyMedium()
+              .copyWith(color: kccBlack, fontStyle: FontStyle.italic),
+          // textTheme.bodyMedium?.copyWith(
+          //     color: kccBlack,
+          //     fontStyle: FontStyle.italic,
+          //     fontWeight: kcfregular,
+          //     fontSize: 20.sp),
         ),
         gaph(h: 12.h),
-        Text(
-          duration,
-          style: textTheme.bodyMedium?.copyWith(
-              color: kccblack4, fontWeight: kcfregular, fontSize: 20.sp),
-        ),
+        Text(duration, style: kcfLBodyMedium().copyWith(color: kccBlack4)
+            // textTheme.bodyMedium?.copyWith(
+            //     color: kccblack4, fontWeight: kcfregular, fontSize: 20.sp),
+            ),
       ],
     );
   }
 
-  Widget educationDesign(TextTheme textTheme) {
+  Widget educationDesign() {
     return SizedBox(
       width: 510.w,
       child: Column(
@@ -145,13 +142,13 @@ class QualificationLarge extends StatelessWidget {
             alignment: Alignment.center,
             child: Text(
               'Education',
-              style: textTheme.displayMedium?.copyWith(
-                  fontWeight: kcfbold, color: kccPrimary, fontSize: 40.sp),
+              style: kcfLDisplayMedium().copyWith(color: kccPrimary),
+              //  textTheme.displayMedium?.copyWith(
+              //     fontWeight: kcfbold, color: kccPrimary, fontSize: 40.sp),
             ),
           ),
           gaph(h: 54.h),
           educationContent(
-            textTheme,
             kcsEducationDegree,
             kcsEducationDegreeSchool,
             kcsEducationDegreeDuration,
@@ -159,7 +156,6 @@ class QualificationLarge extends StatelessWidget {
           ),
           gaph(h: 50.h),
           educationContent(
-            textTheme,
             kcsEducationDiploma,
             kcsEducationDiplomaSchool,
             kcsEducationDiplomaDuration,
@@ -171,37 +167,37 @@ class QualificationLarge extends StatelessWidget {
     );
   }
 
-  Column educationContent(TextTheme textTheme, String education, String school,
-      String duration, String result) {
+  Column educationContent(
+      String education, String school, String duration, String result) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
           education,
-          style: textTheme.headlineSmall
-              ?.copyWith(color: kccPrimary, fontSize: 24.sp),
+          style: kcfLHeadlineSmall()
+              .copyWith(color: kccPrimary, fontWeight: kcfsemibold),
+          // textTheme.headlineSmall
+          //     ?.copyWith(color: kccPrimary, fontSize: 24.sp),
         ),
         gaph(h: 12.h),
-        Text(
-          school,
-          style: textTheme.bodyMedium?.copyWith(
-              color: kccBlack,
-              fontStyle: FontStyle.italic,
-              fontWeight: kcfregular,
-              fontSize: 20.sp),
-        ),
+        Text(school,
+            style: kcfLBodyMedium()
+                .copyWith(color: kccBlack, fontStyle: FontStyle.italic)
+            // textTheme.bodyMedium?.copyWith(
+            //     color: kccBlack,
+            //     fontStyle: FontStyle.italic,
+            //     fontWeight: kcfregular,
+            //     fontSize: 20.sp),
+            ),
         gaph(h: 12.h),
-        Text(
-          duration,
-          style: textTheme.bodyMedium?.copyWith(
-              color: kccblack4, fontWeight: kcfregular, fontSize: 20.sp),
-        ),
+        Text(duration, style: kcfLBodyMedium().copyWith(color: kccBlack4)
+            // textTheme.bodyMedium?.copyWith(
+            //     color: kccblack4, fontWeight: kcfregular, fontSize: 20.sp),
+            ),
         gaph(h: 12.h),
-        Text(
-          result,
-          style:
-              textTheme.bodyMedium?.copyWith(color: kccBlack, fontSize: 20.sp),
-        ),
+        Text(result, style: kcfLBodyMedium().copyWith(color: kccBlack)
+            // textTheme.bodyMedium?.copyWith(color: kccBlack, fontSize: 20.sp),
+            ),
       ],
     );
   }

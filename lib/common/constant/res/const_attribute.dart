@@ -12,82 +12,131 @@ const kcfbold = FontWeight.bold;
 const kcfextrabold = FontWeight.w800;
 const kcfblack = FontWeight.w900;
 
-const kcftitleMediumSize = 40.0;
-const kcftitleLargeSize = 50.0;
-const kcfbodyMediumSize = 18.0;
-const kcfbodyLargeSize = 36.0;
+// const kcftitleMediumSize = 40.0;
+// const kcftitleLargeSize = 50.0;
+// const kcfbodyMediumSize = 18.0;
+// const kcfbodyLargeSize = 36.0;
 
-TextStyle kcfStyleDisplayLarge({bool r = false}) => GoogleFonts.inter(
-      color: kccWhite,
-      fontSize: r ? 50.sp : 50, //57,
-      fontWeight: kcfbold,
-    );
+const double kcfLDisplayLargeSize = 50; //57
+const double kcfLDisplayMediumSize = 40; //45
+const double kcfLDisplaySmallSize = 36;
 
-TextStyle kcfStyleDisplaySmall({bool r = false}) => GoogleFonts.inter(
+const double kcfLHeadlineLargeSize = 32;
+const double kcfLHeadlineMediumSize = 28;
+const double kcfLHeadlineSmallSize = 24;
+
+const double kcfLTitleLargeSize = 22;
+const double kcfLTitleMediumSize = 20; //16
+const double kcfLTitleSmallSize = 18; //14
+
+const double kcfLLabelLargeSize = 14;
+const double kcfLLabelMediumize = 12;
+const double kcfLLabelSmallSize = 11;
+
+const double kcfLBodyLargeSize = 24; //16
+const double kcfLBodyMediumize = 20; //14
+const double kcfLBodySmallSize = 18; //12
+
+const double kcfSTitleMediumSize = 16;
+const double kcfSTitleSmallSize = 14;
+
+const double kcfSBodyLargeSize = 16;
+const double kcfSBodyMediumize = 14;
+const double kcfSBodySmallSize = 12;
+
+TextStyle kcfLDisplayLarge({bool r = true}) => GoogleFonts.inter(
       color: kccWhite,
-      fontSize: r ? 50.sp : 50, //57,
-      fontWeight: kcfbold,
-    );
-TextStyle kcfStyleHeadlineLarge({bool r = false}) => GoogleFonts.inter(
-      color: kccWhite,
-      fontSize: r ? 50.sp : 50, //57,
-      fontWeight: kcfbold,
-    );
-TextStyle kcfStyleHeadlineMedium({bool r = false}) => GoogleFonts.inter(
-      color: kccWhite,
-      fontSize: r ? 50.sp : 50, //57,
-      fontWeight: kcfbold,
-    );
-TextStyle kcfStyleHeadlineSmall({bool r = false}) => GoogleFonts.inter(
-      color: kccWhite,
-      fontSize: r ? 50.sp : 50, //57,
-      fontWeight: kcfbold,
-    );
-TextStyle kcfStyleTitleLarge({bool r = false}) => GoogleFonts.inter(
-      color: kccWhite,
-      fontSize: r ? 50.sp : 50, //57,
-      fontWeight: kcfbold,
-    );
-TextStyle kcfStyleTitleMedium({bool r = false}) => GoogleFonts.inter(
-      color: kccWhite,
-      fontSize: r ? 50.sp : 50, //57,
-      fontWeight: kcfbold,
-    );
-TextStyle kcfStyleTitleSmall({bool r = false}) => GoogleFonts.inter(
-      color: kccWhite,
-      fontSize: r ? 50.sp : 50, //57,
-      fontWeight: kcfbold,
-    );
-TextStyle kcfStyleLabelLarge({bool r = false}) => GoogleFonts.inter(
-      color: kccWhite,
-      fontSize: r ? 50.sp : 50, //57,
-      fontWeight: kcfbold,
+      fontSize: r ? kcfLDisplayLargeSize.sp : kcfLDisplayLargeSize, //50
+      fontWeight: kcfregular,
     );
 
-TextStyle kcfStyleLabelMedium({bool r = false}) => GoogleFonts.inter(
+TextStyle kcfLDisplayMedium({bool r = true}) => GoogleFonts.inter(
       color: kccWhite,
-      fontSize: r ? 50.sp : 50, //57,
-      fontWeight: kcfbold,
+      fontSize: r ? kcfLDisplayMediumSize.sp : kcfLDisplayMediumSize, //40
+      fontWeight: kcfregular,
     );
-TextStyle kcfStyleLabelSmall({bool r = false}) => GoogleFonts.inter(
+TextStyle kcfLDisplaySmall({bool r = true}) => GoogleFonts.inter(
       color: kccWhite,
-      fontSize: r ? 50.sp : 50, //57,
-      fontWeight: kcfbold,
+      fontSize: r ? kcfLDisplaySmallSize.sp : kcfLDisplaySmallSize, //36
+      fontWeight: kcfregular,
     );
-TextStyle kcfStyleBodyLarge({bool r = false}) => GoogleFonts.inter(
+
+TextStyle kcfLHeadlineLarge({bool r = true}) => GoogleFonts.inter(
       color: kccWhite,
-      fontSize: r ? 50.sp : 50, //57,
-      fontWeight: kcfbold,
+      fontSize: r ? kcfLHeadlineLargeSize.sp : kcfLHeadlineLargeSize, //32
+      fontWeight: kcfregular,
     );
-TextStyle kcfStyleBodyMedium({bool r = false}) => GoogleFonts.inter(
+TextStyle kcfLHeadlineMedium({bool r = true}) => GoogleFonts.inter(
       color: kccWhite,
-      fontSize: r ? 50.sp : 50, //57,
-      fontWeight: kcfbold,
+      fontSize: r ? kcfLHeadlineMediumSize.sp : kcfLHeadlineMediumSize, //28
+      fontWeight: kcfregular,
     );
-TextStyle kcfStyleBodySmall({bool r = false}) => GoogleFonts.inter(
+TextStyle kcfLHeadlineSmall({bool r = true}) => GoogleFonts.inter(
       color: kccWhite,
-      fontSize: r ? 50.sp : 50, //57,
-      fontWeight: kcfbold,
+      fontSize: r ? kcfLHeadlineSmallSize.sp : kcfLHeadlineSmallSize, //24
+      fontWeight: kcfregular,
+    );
+TextStyle kcfLTitleLarge({bool r = true}) => GoogleFonts.inter(
+      color: kccWhite,
+      fontSize: r ? kcfLTitleLargeSize.sp : kcfLTitleLargeSize, //22
+      fontWeight: kcfregular,
+    );
+TextStyle kcfLTitleMedium({bool r = true}) => GoogleFonts.inter(
+      color: kccWhite,
+      fontSize: r ? kcfLTitleMediumSize.sp : kcfLTitleMediumSize, //20
+      fontWeight: kcfmedium,
+    );
+TextStyle kcfLTitleSmall({bool r = true}) => GoogleFonts.inter(
+      color: kccWhite,
+      fontSize: r ? kcfLTitleSmallSize.sp : kcfLTitleSmallSize, //18
+      fontWeight: kcfmedium,
+    );
+TextStyle kcfLLabelLarge({bool r = true}) => GoogleFonts.inter(
+      color: kccWhite,
+      fontSize: r ? kcfLLabelLargeSize.sp : kcfLLabelLargeSize, //14
+      fontWeight: kcfmedium,
+    );
+
+TextStyle kcfLLabelMedium({bool r = true}) => GoogleFonts.inter(
+      color: kccWhite,
+      fontSize: r ? kcfLLabelMediumize.sp : kcfLLabelMediumize, //12
+      fontWeight: kcfmedium,
+    );
+TextStyle kcfLLabelSmall({bool r = true}) => GoogleFonts.inter(
+      color: kccWhite,
+      fontSize: r ? kcfLLabelSmallSize.sp : kcfLLabelSmallSize, //11
+      fontWeight: kcfmedium,
+    );
+TextStyle kcfLBodyLarge({bool r = true}) => GoogleFonts.inter(
+      color: kccWhite,
+      fontSize: r ? kcfLBodyLargeSize.sp : kcfLBodyLargeSize, //24
+      fontWeight: kcfregular,
+    );
+TextStyle kcfLBodyMedium({bool r = true}) => GoogleFonts.inter(
+      color: kccWhite,
+      fontSize: r ? kcfLBodyMediumize.sp : kcfLBodyMediumize, //20
+      fontWeight: kcfregular,
+    );
+TextStyle kcfLBodySmall({bool r = true}) => GoogleFonts.inter(
+      color: kccWhite,
+      fontSize: r ? kcfLBodySmallSize.sp : kcfLBodySmallSize, //18
+      fontWeight: kcfregular,
+    );
+
+TextStyle kcfSBodyLarge({bool r = true}) => GoogleFonts.inter(
+      color: kccWhite,
+      fontSize: r ? kcfSBodyLargeSize.sp : kcfSBodyLargeSize, //16
+      fontWeight: kcfregular,
+    );
+TextStyle kcfSBodyMedium({bool r = true}) => GoogleFonts.inter(
+      color: kccWhite,
+      fontSize: r ? kcfSBodyMediumize.sp : kcfSBodyMediumize, //14
+      fontWeight: kcfregular,
+    );
+TextStyle kcfSBodySmall({bool r = true}) => GoogleFonts.inter(
+      color: kccWhite,
+      fontSize: r ? kcfSBodySmallSize.sp : kcfSBodySmallSize, //12
+      fontWeight: kcfregular,
     );
 const double kcaLargeScreenMinWidth = 1024;
 const double kcaMediumScreenMinWidth = 430;

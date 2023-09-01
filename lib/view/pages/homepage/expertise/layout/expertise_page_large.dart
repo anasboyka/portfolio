@@ -15,30 +15,26 @@ class _ExpertisePageLargeState extends State<ExpertisePageLarge> {
   Knowledge knowledgeIot = Knowledge.skills;
   @override
   Widget build(BuildContext context) {
-    final textTheme = Theme.of(context).textTheme;
+    // final textTheme = Theme.of(context).textTheme;
     return Container(
       color: kccOnPrimary,
       child: Column(
         children: [
           gaph(h: 20.h),
-          Text(
-            'Expertise',
-            style: textTheme.displayLarge?.copyWith(fontSize: 50.sp),
-          ),
-          Text(
-            "My skills and knowledge",
-            style: textTheme.bodyMedium?.copyWith(
-                color: kccgrey1, fontWeight: kcfregular, fontSize: 20.sp),
-          ),
+          Text('Expertise',
+              style:
+                  //textTheme.displayLarge?.copyWith(fontSize: 50.sp),
+                  kcfLDisplayLarge().copyWith(fontWeight: kcfbold)),
+          Text("My skills and knowledge",
+              style: kcfLBodyMedium().copyWith(color: kccgrey1)
+              // textTheme.bodyMedium?.copyWith(
+              //     color: kccgrey1, fontWeight: kcfregular, fontSize: 20.sp),
+              ),
           gaph(h: 50.h),
-          expertiseDesign(
-              textTheme,
-              Service.mobileApp,
-              'assets/images/mobile_app_dev.jpg',
-              kcsMobileAppDevelopment,
-              kcsMobileAppDevelopmentContent),
+          expertiseDesign(Service.mobileApp, 'assets/images/mobile_app_dev.jpg',
+              kcsMobileAppDevelopment, kcsMobileAppDevelopmentContent),
           gaph(h: 108),
-          expertiseDesign(textTheme, Service.iot, 'assets/images/iot.jpg',
+          expertiseDesign(Service.iot, 'assets/images/iot.jpg',
               kcsInternetOfThings, kcsInternetOfThingsContent),
           gaph(h: 82.h)
         ],
@@ -47,7 +43,6 @@ class _ExpertisePageLargeState extends State<ExpertisePageLarge> {
   }
 
   Widget expertiseDesign(
-    TextTheme textTheme,
     Service service,
     String image,
     String title,
@@ -78,14 +73,16 @@ class _ExpertisePageLargeState extends State<ExpertisePageLarge> {
                   children: [
                     Text(
                       title,
-                      style: textTheme.displayMedium
-                          ?.copyWith(fontWeight: kcfsemibold, fontSize: 40.sp),
+                      style:
+                          kcfLDisplayMedium().copyWith(fontWeight: kcfsemibold),
+                      // textTheme.displayMedium
+                      //     ?.copyWith(fontWeight: kcfsemibold, fontSize: 40.sp),
                     ),
                     gaph(h: 14.h),
                     Text(
                       content,
-                      style:
-                          textTheme.bodySmall?.copyWith(fontWeight: kcfregular),
+                      style: kcfLBodySmall(),
+                      // textTheme.bodySmall?.copyWith(fontWeight: kcfregular),
                     ),
                     gaph(h: 40.h),
                     SizedBox(
@@ -103,8 +100,10 @@ class _ExpertisePageLargeState extends State<ExpertisePageLarge> {
                             padding: EdgeInsets.symmetric(vertical: 12.h),
                             child: Text(
                               Knowledge.skills.text,
-                              style: textTheme.bodyLarge?.copyWith(
-                                fontSize: 24.sp,
+                              style:
+
+                                  // textTheme.bodyLarge?.copyWith(
+                                  kcfLBodyLarge().copyWith(
                                 fontWeight: service == Service.mobileApp
                                     ? knowledgeMobile == Knowledge.skills
                                         ? kcfbold
@@ -119,7 +118,8 @@ class _ExpertisePageLargeState extends State<ExpertisePageLarge> {
                             padding: EdgeInsets.symmetric(vertical: 12.h),
                             child: Text(
                               Knowledge.softwareUsed.text,
-                              style: textTheme.bodyLarge?.copyWith(
+                              style: kcfLBodyLarge().copyWith(
+                                  // textTheme.bodyLarge?.copyWith(
                                   fontSize: 24.sp,
                                   fontWeight: service == Service.mobileApp
                                       ? knowledgeMobile ==
@@ -160,10 +160,11 @@ class _ExpertisePageLargeState extends State<ExpertisePageLarge> {
                               label: Text(
                                 e,
                               ),
-                              labelStyle: textTheme.bodyLarge?.copyWith(
-                                fontWeight: kcfregular,
-                                fontSize: 24.sp,
-                              ),
+                              labelStyle: kcfLBodyLarge(),
+                              // textTheme.bodyLarge?.copyWith(
+                              //   fontWeight: kcfregular,
+                              //   fontSize: 24.sp,
+                              // ),
                               labelPadding: EdgeInsets.zero,
                               padding: EdgeInsets.symmetric(
                                   horizontal: 14.w, vertical: 7.h),

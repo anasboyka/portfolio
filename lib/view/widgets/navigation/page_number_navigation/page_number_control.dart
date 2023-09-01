@@ -30,7 +30,7 @@ class PageNumberControl extends StatefulWidget {
 class _PageNumberControlState extends State<PageNumberControl> {
   int currentPage = 1;
 
-  Color containerColor = kccblack4;
+  Color containerColor = kccBlack4;
   bool hover = false;
   final key = GlobalKey();
 
@@ -90,7 +90,7 @@ class _PageNumberControlState extends State<PageNumberControl> {
                       border: Border.all(color: kccWhite),
                       borderRadius: BorderRadius.circular(10),
                     ),
-                    overlayColor: MaterialStateProperty.all<Color>(kccblack4),
+                    overlayColor: MaterialStateProperty.all<Color>(kccBlack4),
                   ),
                   menuItemStyleData: const MenuItemStyleData(
                       //padding: EdgeInsets.symmetric(horizontal: 50.w),

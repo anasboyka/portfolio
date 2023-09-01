@@ -124,7 +124,7 @@ String kcsBasedInKualaLumpur = "Based in Kuala Lumpur";
 String kcsBiography = "BIOGRAPHY";
 String kcsBioContent =
     "I'm a passionate mobile app developer with expertise in developing and deploying mobile apps using Flutter. With 2 years of experience in this field, I have successfully published and monetized one of my apps on both the Apple App Store and Google Play Store.";
-String kcsWhatDoIDo = "WHAT DO I DO";
+String kcsWhatIDo = "WHAT I DO";
 String kcsWhatDoIDoContent =
     "As a graduate of software engineering and mechatronic engineering, I work as a freelancer during my spare time. I offer services such as creating projects related to mobile app development, Internet Of Things (IOT) and electronics.";
 String kcsPreferedLocation = "PREFERED LOCATION";

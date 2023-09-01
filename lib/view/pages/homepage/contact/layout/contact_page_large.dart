@@ -17,19 +17,19 @@ class ContactPageLarge extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final textTheme = Theme.of(context).textTheme;
+    // final textTheme = Theme.of(context).textTheme;
     return Column(
       children: [
         gaph(h: 20.h),
-        Text(
-          'Contact',
-          style: kcfStyleDisplayLarge()//textTheme.displayLarge?.copyWith(fontSize: 50.sp),
-        ),
-        Text(
-          "Hire or Collaborate with me ",
-          style: textTheme.bodyMedium?.copyWith(
-              color: kccWhite, fontWeight: kcfregular, fontSize: 20.sp),
-        ),
+        Text('Contact',
+            style: kcfLDisplayLarge().copyWith(
+              fontWeight: kcfbold,
+            ) //textTheme.displayLarge?.copyWith(fontSize: 50.sp),
+            ),
+        Text("Hire or Collaborate with me ", style: kcfLBodyMedium()
+            // textTheme.bodyMedium?.copyWith(
+            //     color: kccWhite, fontWeight: kcfregular, fontSize: 20.sp),
+            ),
         gaph(h: 17.h),
         Container(
           width: double.maxFinite,
@@ -110,13 +110,15 @@ class ContactPageLarge extends StatelessWidget {
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                               children: [
-                                Text(
-                                  'View Resume',
-                                  style: textTheme.bodyMedium?.copyWith(
-                                      fontSize: 20.sp,
-                                      color: kccWhite,
-                                      fontWeight: kcfbold),
-                                ),
+                                Text('View Resume',
+                                    style: kcfLBodyMedium()
+                                        .copyWith(fontWeight: kcfbold)
+                                    // textTheme.bodyMedium?.copyWith(
+                                    //   fontSize: 20.sp,
+                                    //   color: kccWhite,
+                                    //   fontWeight: kcfbold,
+                                    // ),
+                                    ),
                                 const Icon(
                                   Icons.contact_page_outlined,
                                   color: kccWhite,
@@ -310,11 +312,12 @@ class ContactPageLarge extends StatelessWidget {
                                   child: Padding(
                                     padding: EdgeInsets.symmetric(
                                         horizontal: 16.w, vertical: 10.h),
-                                    child: Text(
-                                      'Submit',
-                                      style: textTheme.headlineLarge?.copyWith(
-                                          fontWeight: kcfbold, fontSize: 28.sp),
-                                    ),
+                                    child: Text('Submit',
+                                        style: kcfLHeadlineMedium()
+                                            .copyWith(fontWeight: kcfbold)
+                                        // textTheme.headlineLarge?.copyWith(
+                                        //     fontWeight: kcfbold, fontSize: 28.sp),
+                                        ),
                                   ),
                                 ),
                                 // gapwr(),

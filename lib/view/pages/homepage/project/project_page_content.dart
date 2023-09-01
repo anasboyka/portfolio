@@ -19,7 +19,7 @@ class _ProjectPageContentState extends State<ProjectPageContent> {
   int currentPage = 1;
   @override
   Widget build(BuildContext context) {
-    final textTheme = Theme.of(context).textTheme;
+    // final textTheme = Theme.of(context).textTheme;
     return Column(
       children: [
         gaph(h: 70.h),
@@ -54,7 +54,6 @@ class _ProjectPageContentState extends State<ProjectPageContent> {
                 // print("done loading");
 
                 return projectPageDisplay(
-                  textTheme,
                   projects[indexTop],
                   indexBtm != null ? projects[indexBtm] : null,
                 );
@@ -114,7 +113,7 @@ class _ProjectPageContentState extends State<ProjectPageContent> {
   }
 
   Column projectPageDisplay(
-    TextTheme textTheme,
+    // TextTheme textTheme,
     ProjectData projectTop,
     ProjectData? projectBottom,
   ) {

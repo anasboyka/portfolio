@@ -129,14 +129,15 @@ class _ProjectCardState extends State<ProjectCard> {
                 ),
                 Expanded(
                   child: LayoutBuilder(builder: (context, constraint) {
-                    final textTheme = Theme.of(context).textTheme;
+                    // final textTheme = Theme.of(context).textTheme;
 
-                    TextStyle chipTextStyle = textTheme.bodyMedium?.copyWith(
-                            fontWeight: kcfregular, fontSize: 20.sp) ??
-                        TextStyle(
-                            fontSize: 20.sp,
-                            color: kccWhite,
-                            fontWeight: kcfregular);
+                    TextStyle chipTextStyle = kcfLBodyMedium();
+                    // textTheme.bodyMedium?.copyWith(
+                    //         fontWeight: kcfregular, fontSize: 20.sp) ??
+                    //     TextStyle(
+                    //         fontSize: 20.sp,
+                    //         color: kccWhite,
+                    //         fontWeight: kcfregular);
                     double contentHorizontalPadding = 50.w;
                     double horizontalSpacing = 10,
                         verticalSpacing = 8,
@@ -223,13 +224,11 @@ class _ProjectCardState extends State<ProjectCard> {
                       child: readMore || wrapIsOverflowed
                           ? SingleChildScrollView(
                               child: content(
-                                textTheme,
                                 wrap,
                                 contentHorizontalPadding,
                               ),
                             )
                           : content(
-                              textTheme,
                               wrap,
                               contentHorizontalPadding,
                             ),
@@ -241,8 +240,7 @@ class _ProjectCardState extends State<ProjectCard> {
           );
   }
 
-  Padding content(
-      TextTheme textTheme, Widget wrap, double contentHorizontalPadding) {
+  Padding content(Widget wrap, double contentHorizontalPadding) {
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: contentHorizontalPadding),
       child: Column(
@@ -335,8 +333,9 @@ class _ProjectCardState extends State<ProjectCard> {
                         },
                         child: Text(
                           "View Project",
-                          style: textTheme.bodySmall?.copyWith(
-                              fontWeight: kcfregular, fontSize: 18.sp),
+                          style: kcfLBodySmall(),
+                          //  textTheme.bodySmall?.copyWith(
+                          //     fontWeight: kcfregular, fontSize: 18.sp),
                         ),
                       ),
                     )
@@ -380,8 +379,9 @@ class _ProjectCardState extends State<ProjectCard> {
                         },
                         child: Text(
                           "Project Video",
-                          style: textTheme.bodySmall?.copyWith(
-                              fontWeight: kcfregular, fontSize: 18.sp),
+                          style: kcfLBodySmall(),
+                          // textTheme.bodySmall?.copyWith(
+                          //     fontWeight: kcfregular, fontSize: 18.sp),
                         ),
                       ),
                     )

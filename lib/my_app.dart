@@ -13,11 +13,12 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     print('kisWeb =  $kIsWeb');
+
     return ScreenUtilInit(
       designSize: kIsWeb ? const Size(1728, 1117) : const Size(390, 844),
       builder: (context, child) {
         return MaterialApp(
-        title: 'DevTech Monster',
+          title: 'DevTech Monster',
           // theme: ThemeData(
           //   colorScheme: AppTheme.lightColorScheme,
           //   useMaterial3: true

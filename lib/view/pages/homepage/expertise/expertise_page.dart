@@ -18,6 +18,7 @@ class _ExpertisePageState extends State<ExpertisePage> {
   Widget build(BuildContext context) {
     // final textTheme = Theme.of(context).textTheme;
     return AdaptiveLayout(
+      bodySmall: (context, constraint, screenSize) => SizedBox(height: 100,),
       bodyLarge: (context, constraint, layout) {
         return const ExpertisePageLarge();
         // return Container(
