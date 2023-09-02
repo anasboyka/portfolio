@@ -7,9 +7,8 @@ import 'package:url_launcher/url_launcher.dart';
 import 'package:portfolio/common/common.dart';
 import 'package:portfolio/data/models/resume_file.dart';
 import 'package:portfolio/data/remote/services/firebase/firestoredb.dart';
-import 'package:portfolio/view/pages/homepage/about/widget/content_expanded.dart';
+
 import 'package:portfolio/view/widgets/custom/expanded_text.dart';
-import 'package:portfolio/view/widgets/custom/pageview/expandable_pageview.dart';
 
 class AboutPageSmall extends StatefulWidget {
   const AboutPageSmall({super.key, required this.appBarHeight});
@@ -22,28 +21,7 @@ class AboutPageSmall extends StatefulWidget {
 class _AboutPageSmallState extends State<AboutPageSmall> {
   TextStyle contentStyle = kcfSBodyMedium();
   int maxMultiline = 4;
-  List<Widget> childrens = [
-    Container(
-      height: 100,
-      width: 100,
-      color: kccBlue1,
-    ),
-    Container(
-      height: 80,
-      width: 100,
-      color: kccWhite2,
-    ),
-    Container(
-      height: 90,
-      width: 100,
-      color: kccgrey4,
-    ),
-    Container(
-      height: 60,
-      width: 100,
-      color: kccPurple1,
-    ),
-  ];
+
   late List<double> _heights;
   double get currentHeight => _heights[currentPageIndex];
   // List<UserDetail> details = [
@@ -52,16 +30,22 @@ class _AboutPageSmallState extends State<AboutPageSmall> {
   //   UserDetail(data: kcsPreferedLocationContent),
   // ];
   List<bool> readMore = List.generate(4, (index) => false);
-  PageController pageController = PageController();
+  PageController pageController = PageController(keepPage: true);
   double extraHeight = 0;
   int currentPageIndex = 0;
+  double scale = 0;
 
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
-    _heights = childrens.map((e) => 0.0).toList();
+    _heights = readMore.map((e) => 0.0).toList();
+    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
+
+  // void getChildWidget() {
+
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -218,10 +202,11 @@ class _AboutPageSmallState extends State<AboutPageSmall> {
                   onTap: (value) {
                     setState(() {
                       currentPageIndex = value;
+                      scale = 0;
                     });
-                    pageController.animateToPage(value,
-                        duration: const Duration(milliseconds: 200),
-                        curve: Curves.easeInOutCubic);
+                    // pageController.animateToPage(value,
+                    //     duration: const Duration(milliseconds: 200),
+                    //     curve: Curves.easeInOutCubic);
                   },
                   tabs: const [
                     Tab(
@@ -250,14 +235,20 @@ class _AboutPageSmallState extends State<AboutPageSmall> {
               gaph(h: 12.h),
               SizedBox(
                 height: currentHeight,
-                child: PageView(
-                  controller: pageController,
-                  physics: const NeverScrollableScrollPhysics(),
-                  children: sizeReportingChildren
-                      .asMap() //
-                      .map((index, child) => MapEntry(index, child))
-                      .values
-                      .toList(),
+                child: AnimatedSwitcher(
+                  duration: Duration(milliseconds: 500),
+                  child: IndexedStack(
+                    key: ValueKey<int>(currentPageIndex),
+                    index: currentPageIndex,
+                    // pageSnapping: false,
+                    // controller: pageController,
+                    // physics: const NeverScrollableScrollPhysics(),
+                    children: sizeReportingChildren
+                        .asMap() //
+                        .map((index, child) => MapEntry(index, child))
+                        .values
+                        .toList(),
+                  ),
                 ),
               ),
               // ExpandablePageView(
@@ -518,7 +509,7 @@ class _AboutPageSmallState extends State<AboutPageSmall> {
               ),
             ],
           ),
-        ),
+        )
       ]
           .asMap()
           .map(
@@ -531,11 +522,11 @@ class _AboutPageSmallState extends State<AboutPageSmall> {
                 alignment: Alignment.topCenter,
                 child: SizeReportingWidget(
                   onSizeChange: (size) {
-                    setState(() {
-                      _heights[index] = size.height;
-                      extraHeight = _heights[index] -
-                          calculateSingleLineHeight(contentStyle) * 4;
-                    });
+                    _heights[index] = size.height;
+                    // extraHeight = _heights[index] -
+                    //     calculateSingleLineHeight(contentStyle) * 4;
+                    setState(() {});
+                    print(_heights);
                   },
                   child: Align(child: child),
                 ),

@@ -146,7 +146,7 @@ const double kcaMediumScreenMinWidth = 430;
 
 const kcaInset0 = EdgeInsets.zero;
 
-bool isIosOrAndroid = (Platform.isAndroid || Platform.isIOS);
+bool isMobile = (Platform.isAndroid || Platform.isIOS);
 final isWebMobile = kIsWeb &&
     (defaultTargetPlatform == TargetPlatform.iOS ||
         defaultTargetPlatform == TargetPlatform.android);
