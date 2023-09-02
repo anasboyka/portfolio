@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:portfolio/common/common.dart';
 import 'package:portfolio/view/pages/homepage/expertise/layout/expertise_page_large.dart';
+import 'package:portfolio/view/pages/homepage/expertise/layout/expertise_page_small.dart';
 import 'package:portfolio/view/widgets/layout/adaptive_layout.dart';
 
 class ExpertisePage extends StatefulWidget {
@@ -18,7 +19,8 @@ class _ExpertisePageState extends State<ExpertisePage> {
   Widget build(BuildContext context) {
     // final textTheme = Theme.of(context).textTheme;
     return AdaptiveLayout(
-      bodySmall: (context, constraint, screenSize) => SizedBox(height: 100,),
+      bodySmall: (context, constraint, screenSize) =>
+          const ExpertisePageSmall(),
       bodyLarge: (context, constraint, layout) {
         return const ExpertisePageLarge();
         // return Container(

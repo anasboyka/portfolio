@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:portfolio/common/common.dart';
 import 'package:portfolio/view/pages/homepage/qualification/layout/qualification_large.dart';
+import 'package:portfolio/view/pages/homepage/qualification/layout/qualification_small.dart';
 import 'package:portfolio/view/widgets/layout/adaptive_layout.dart';
 
 class QualificationPage extends StatefulWidget {
@@ -16,9 +17,8 @@ class _QualificationPageState extends State<QualificationPage> {
   Widget build(BuildContext context) {
     // final textTheme = Theme.of(context).textTheme;
     return AdaptiveLayout(
-        bodySmall: (context, constraint, screenSize) => SizedBox(
-              height: 100,
-            ),
+        bodySmall: (context, constraint, screenSize) =>
+            const QualificationSmall(),
         bodyLarge: (context, constraint, layout) {
           return const QualificationLarge();
           // return Container(

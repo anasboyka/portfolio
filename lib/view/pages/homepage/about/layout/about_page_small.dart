@@ -236,7 +236,7 @@ class _AboutPageSmallState extends State<AboutPageSmall> {
               SizedBox(
                 height: currentHeight,
                 child: AnimatedSwitcher(
-                  duration: Duration(milliseconds: 500),
+                  duration: const Duration(milliseconds: 500),
                   child: IndexedStack(
                     key: ValueKey<int>(currentPageIndex),
                     index: currentPageIndex,
