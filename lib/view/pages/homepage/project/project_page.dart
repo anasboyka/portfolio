@@ -17,7 +17,9 @@ class _ProjectPageState extends State<ProjectPage> {
   Widget build(BuildContext context) {
     //final textTheme = Theme.of(context).textTheme;
     return AdaptiveLayout(
-        bodySmall: (context, constraint, screenSize) => SizedBox(height: 100,),
+        bodySmall: (context, constraint, screenSize) => SizedBox(
+              height: 100,
+            ),
         bodyLarge: (context, constraint, layout) {
           return const ProjectPageLarge();
           // return DefaultTabController(

@@ -1,5 +1,9 @@
+import 'dart:io';
+
 import 'package:firebase_core/firebase_core.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:get_it/get_it.dart';
 
 class InitTask {
@@ -14,14 +18,21 @@ class InitTask {
     // init language
     // init fcm utils (permission)
     WidgetsFlutterBinding.ensureInitialized();
-    await Firebase.initializeApp(
-      name: "portfolioDTM",
-        options: const FirebaseOptions(
-      apiKey: "AIzaSyBOCIicXN_BKvhCrCWhxGhujyAu5doSJFI",
-      projectId: "portfoliodtm-c55b1",
-      messagingSenderId: "1099410234557",
-      appId: "1:1099410234557:web:ffc02cc02efede5fe1ebd4",
-    ));
+    SystemChrome.setEnabledSystemUIMode(SystemUiMode.edgeToEdge);
+    // FirebaseOptions firebaseOptions = (Platform.isIOS || Platform.isMacOS)?
+    // const FirebaseOptions(apiKey: "AIzaSyD_cQ3apYaVmTYIHg-_mKvxEeJ6BDH-658", appId: "1:1099410234557:ios:426823b918f5c871e1ebd4", messagingSenderId: messagingSenderId, projectId: projectId)
+    if (kIsWeb) {
+      await Firebase.initializeApp(
+          name: "portfolioDTM",
+          options: const FirebaseOptions(
+            apiKey: "AIzaSyBOCIicXN_BKvhCrCWhxGhujyAu5doSJFI",
+            projectId: "portfoliodtm-c55b1",
+            messagingSenderId: "1099410234557",
+            appId: "1:1099410234557:web:ffc02cc02efede5fe1ebd4",
+          ));
+    } else {
+      await Firebase.initializeApp();
+    }
     //setupLocator();
     // await Firebase.initializeApp();
   }

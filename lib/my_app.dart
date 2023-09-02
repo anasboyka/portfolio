@@ -12,7 +12,7 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    print('kisWeb =  $kIsWeb');
+    // print('kisWeb =  $kIsWeb');
 
     return ScreenUtilInit(
       designSize: kIsWeb ? const Size(1728, 1117) : const Size(390, 844),

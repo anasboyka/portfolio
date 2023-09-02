@@ -3,6 +3,7 @@ import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:portfolio/common/common.dart';
@@ -81,7 +82,7 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
       //     _showAppBar = true;
       //   });
       // }
-      print("current Y value =  $yPos");
+      // print("current Y value =  $yPos");
     });
     WidgetsBinding.instance.addPostFrameCallback((_) {
       //scrolltowidget(_projectKey);
@@ -115,7 +116,7 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
 
   @override
   Widget build(BuildContext context) {
-    print("viewpadding top ${MediaQuery.of(context).viewPadding.top}");
+    // print("viewpadding top ${MediaQuery.of(context).viewPadding.top}");
     // final textTheme = Theme.of(context).textTheme;
     return AdaptiveLayout(bodyLarge: (context, screenConstraint, layout) {
       // print('layout $layout');
@@ -216,6 +217,11 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
 
   AppBar appbarNavigation(BuildContext context, Layout layout) {
     return AppBar(
+      systemOverlayStyle: SystemUiOverlayStyle(
+        statusBarColor: Colors.transparent,
+        // systemNavigationBarColor: Colors.transparent,
+        // systemNavigationBarDividerColor: Colors.transparent,
+      ),
       title: Padding(
         padding:
             EdgeInsets.only(left: layout != Layout.small ? 80.w : 0, top: 10.h),
@@ -270,8 +276,7 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
       child: Padding(
         padding: EdgeInsets.symmetric(horizontal: 30.w, vertical: 20.h),
         child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-          ...listNavigationButton(
-                  kcfLDisplayMedium().copyWith(fontSize: 30.sp)
+          ...listNavigationButton(kcfLDisplayMedium().copyWith(fontSize: 30.sp)
                   // textTheme.displayMedium
                   //     ?.copyWith(fontWeight: kcfregular, fontSize: 30.sp),
                   )
