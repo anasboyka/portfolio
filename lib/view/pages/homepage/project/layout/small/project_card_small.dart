@@ -12,16 +12,24 @@ class ProjectCardSmall extends StatefulWidget {
   const ProjectCardSmall({super.key, this.project, this.autoPlay = false});
   final ProjectData? project;
   final bool autoPlay;
+
   @override
   State<ProjectCardSmall> createState() => _ProjectCardSmallState();
 }
 
 class _ProjectCardSmallState extends State<ProjectCardSmall> {
-  bool readMore = false;
-  PageController imagePageController = PageController(initialPage: 0);
+  bool readMore = false, autoPlay = false;
   CarouselController carouselController = CarouselController();
   PageController descPageController = PageController(initialPage: 0);
   int activeImage = 0, activeDescription = 0;
+  int autoplayDuration = 4;
+
+  @override
+  void initState() {
+    autoPlay = widget.autoPlay;
+    // TODO: implement initState
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -59,34 +67,23 @@ class _ProjectCardSmallState extends State<ProjectCardSmall> {
                     options: CarouselOptions(
                       height: 178.h,
                       viewportFraction: 1,
-                      autoPlay: widget.autoPlay,
+                      autoPlay: autoPlay,
+                      autoPlayInterval: Duration(seconds: autoplayDuration),
                       onPageChanged: (index, reason) {
                         setState(() {
                           activeImage = index;
                         });
+                        print(autoplayDuration);
                       },
                     ),
                   ),
-                  // PageView(
-                  //   onPageChanged: (value) {
-                  //     setState(() {
-                  //       activePage = value;
-                  //     });
-                  //   },
-                  //   controller: imagePageController,
-                  //   children: widget.project!.imageUrl
-                  //       .map(
-                  //         (e) => Image.network(
-                  //           e,
-                  //           fit: BoxFit.cover,
-                  //         ),
-                  //       )
-                  //       .toList(),
-                  // ),
                   widget.project!.imageUrl.length != 1
                       ? Positioned(
                           bottom: 10.h,
                           child: AnimatedSmoothIndicator(
+                            onDotClicked: (index) {
+                              carouselController.animateToPage(index);
+                            },
                             activeIndex: activeImage,
                             //controller: imagePageController,
                             count: widget.project!.imageUrl.length,
@@ -117,11 +114,19 @@ class _ProjectCardSmallState extends State<ProjectCardSmall> {
                                 hoverColor: kccgrey4.withOpacity(0.2),
                                 onPressed: activeImage == 0
                                     ? null
-                                    : () {
-                                        imagePageController.previousPage(
+                                    : () async {
+                                        setState(() {
+                                          autoPlay = false;
+                                        });
+                                        carouselController.previousPage(
                                             duration: const Duration(
                                                 milliseconds: 400),
                                             curve: Curves.easeInOutCubic);
+                                        await Future.delayed(
+                                            const Duration(seconds: 8));
+                                        setState(() {
+                                          autoPlay = true;
+                                        });
                                       },
                                 icon: Icon(
                                   Icons.chevron_left,
@@ -141,11 +146,21 @@ class _ProjectCardSmallState extends State<ProjectCardSmall> {
                                 onPressed: activeImage ==
                                         widget.project!.imageUrl.length - 1
                                     ? null
-                                    : () {
-                                        imagePageController.nextPage(
+                                    : () async {
+                                        setState(() {
+                                          autoPlay = false;
+                                        });
+                                        carouselController.nextPage(
                                             duration: const Duration(
                                                 milliseconds: 400),
                                             curve: Curves.easeInOutCubic);
+                                        await Future.delayed(
+                                            const Duration(seconds: 8));
+                                        if (mounted) {
+                                          setState(() {
+                                            autoPlay = true;
+                                          });
+                                        }
                                       },
                                 icon: Icon(
                                   Icons.chevron_right,
@@ -267,6 +282,7 @@ class _ProjectCardSmallState extends State<ProjectCardSmall> {
                     gaph(h: 4.h),
                     Expanded(
                       child: PageView(
+                        physics: const NeverScrollableScrollPhysics(),
                         controller: descPageController,
                         children: [
                           SingleChildScrollView(
@@ -347,7 +363,13 @@ class _ProjectCardSmallState extends State<ProjectCardSmall> {
                         gapw(w: widget.project!.projectLink != null ? 18.w : 0),
                         widget.project!.playStoreLink != null
                             ? InkWell(
-                                onTap: () {},
+                                onTap: () async {
+                                  final Uri url =
+                                      Uri.parse(widget.project!.playStoreLink!);
+                                  if (await canLaunchUrl(url)) {
+                                    await launchUrl(url);
+                                  }
+                                },
                                 child: Image.asset(
                                   "assets/icon/4x/ic_google_play_4x.png",
                                   height: 24.h,
@@ -358,9 +380,15 @@ class _ProjectCardSmallState extends State<ProjectCardSmall> {
                             w: widget.project!.playStoreLink != null
                                 ? 18.w
                                 : 0),
-                        widget.project!.playStoreLink != null
+                        widget.project!.appStoreLink != null
                             ? InkWell(
-                                onTap: () {},
+                                onTap: () async {
+                                  final Uri url =
+                                      Uri.parse(widget.project!.appStoreLink!);
+                                  if (await canLaunchUrl(url)) {
+                                    await launchUrl(url);
+                                  }
+                                },
                                 child: Image.asset(
                                   "assets/icon/4x/ic_app_store_4x.png",
                                   height: 24.h,

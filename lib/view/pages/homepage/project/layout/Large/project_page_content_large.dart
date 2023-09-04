@@ -4,7 +4,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:portfolio/common/common.dart';
 import 'package:portfolio/data/models/project_data.dart';
 import 'package:portfolio/data/remote/services/firebase/firestoredb.dart';
-import 'package:portfolio/view/pages/homepage/project/project_card.dart';
+import 'package:portfolio/view/pages/homepage/project/project_card_large.dart';
 import 'package:portfolio/view/widgets/navigation/page_number_navigation/page_number_control.dart';
 
 class ProjectPageContentLarge extends StatefulWidget {
@@ -120,12 +120,12 @@ class _ProjectPageContentLargeState extends State<ProjectPageContentLarge> {
     return Column(
       mainAxisSize: MainAxisSize.min,
       children: [
-        ProjectCard(
+        ProjectCardLarge(
           key: UniqueKey(),
           project: projectTop,
         ),
         gaph(h: 30.h),
-        ProjectCard(
+        ProjectCardLarge(
           key: UniqueKey(),
           project: projectBottom,
         )

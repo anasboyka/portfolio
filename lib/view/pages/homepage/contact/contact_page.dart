@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:portfolio/common/common.dart';
 import 'package:portfolio/view/pages/homepage/contact/layout/contact_page_large.dart';
+import 'package:portfolio/view/pages/homepage/contact/layout/contact_page_small.dart';
 import 'package:portfolio/view/widgets/layout/adaptive_layout.dart';
 
 class ContactPage extends StatefulWidget {
@@ -15,7 +16,7 @@ class _ContactPageState extends State<ContactPage> {
   Widget build(BuildContext context) {
     // final textTheme = Theme.of(context).textTheme;
     return AdaptiveLayout(
-      bodySmall: (context, constraint, screenSize) => SizedBox(height: 100,),
+      bodySmall: (context, constraint, screenSize) => const ContactPageSmall(),
       bodyLarge: (context, pageConstraint, layout) {
         return ContactPageLarge(layout: layout, pageConstraint: pageConstraint);
         // return Column(

@@ -22,7 +22,7 @@ class ProjectPageSmall extends StatelessWidget {
               "All of my completed projects",
               style: kcfSBodyMedium().copyWith(color: kccgrey1),
             ),
-            gaph(h: 50.h),
+            gaph(h: 20.h),
             // Padding(
             //   padding: EdgeInsets.symmetric(horizontal: 20.w),
             //  child:
@@ -34,6 +34,7 @@ class ProjectPageSmall extends StatelessWidget {
               ],
             ),
             //   )
+            gaphr(),
           ],
         ),
       ),

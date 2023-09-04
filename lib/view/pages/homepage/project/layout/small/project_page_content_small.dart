@@ -53,6 +53,7 @@ class _ProjectPageContentSmallState extends State<ProjectPageContentSmall> {
                   itemCount: projects.length,
                   itemBuilder: (context, index, realIndex) {
                     return ProjectCardSmall(
+                      key: UniqueKey(),
                       project: projects[index],
                       autoPlay: currentIndex == index,
                     );

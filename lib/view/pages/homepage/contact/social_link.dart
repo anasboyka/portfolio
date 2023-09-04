@@ -12,6 +12,8 @@ class SocialLink extends StatefulWidget {
     required this.text,
     this.row = false,
     this.iconWidth = 48,
+    this.style,
+    this.gap = 30,
   });
 
   final VoidCallback ontapLink;
@@ -19,22 +21,29 @@ class SocialLink extends StatefulWidget {
   final String text;
   final bool row;
   final double iconWidth;
+  final TextStyle? style;
+  final double gap;
 
   @override
   State<SocialLink> createState() => _SocialLinkState();
 
-  SocialLink copyWith(
-      {VoidCallback? ontapLink,
-      String? iconAsset,
-      String? text,
-      bool? row,
-      double? iconWidth}) {
+  SocialLink copyWith({
+    VoidCallback? ontapLink,
+    String? iconAsset,
+    String? text,
+    bool? row,
+    double? iconWidth,
+    TextStyle? style,
+    double? gap,
+  }) {
     return SocialLink(
       ontapLink: ontapLink ?? this.ontapLink,
       iconAsset: iconAsset ?? this.iconAsset,
       text: text ?? this.text,
       row: row ?? this.row,
       iconWidth: iconWidth ?? this.iconWidth,
+      style: style ?? this.style,
+      gap: gap ?? this.gap,
     );
   }
 }
@@ -76,11 +85,11 @@ class _SocialLinkState extends State<SocialLink> {
                 onTap: widget.ontapLink,
                 child: Image.asset(
                   widget.iconAsset,
-                  width: 48,
+                  width: widget.iconWidth,
                 ).animate(target: hover ? 1 : 0).scaleXY(
                       end: 1.2,
                       alignment: Alignment.center,
-                      duration: Duration(
+                      duration: const Duration(
                         milliseconds: 200,
                       ),
                       curve: Curves.easeInCubic,
@@ -93,13 +102,14 @@ class _SocialLinkState extends State<SocialLink> {
               //     size: 48,
               //   ),
               // ),
-              gapw(w: 30),
+              gapw(w: widget.gap),
               SelectableText(
                 widget.text,
-                style: GoogleFonts.inter(
-                  fontWeight: kcfregular,
-                  fontSize: 30.sp,
-                ),
+                style: widget.style ??
+                    GoogleFonts.inter(
+                      fontWeight: kcfregular,
+                      fontSize: 30.sp,
+                    ),
               ),
             ],
           );

@@ -7,16 +7,16 @@ import 'package:portfolio/view/widgets/custom/expanded_text.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-class ProjectCard extends StatefulWidget {
-  const ProjectCard({super.key, this.project});
+class ProjectCardLarge extends StatefulWidget {
+  const ProjectCardLarge({super.key, this.project});
 
   final ProjectData? project;
 
   @override
-  State<ProjectCard> createState() => _ProjectCardState();
+  State<ProjectCardLarge> createState() => _ProjectCardLargeState();
 }
 
-class _ProjectCardState extends State<ProjectCard> {
+class _ProjectCardLargeState extends State<ProjectCardLarge> {
   bool readMore = false;
   PageController controller = PageController(initialPage: 0);
   int activePage = 0;
@@ -343,7 +343,13 @@ class _ProjectCardState extends State<ProjectCard> {
               gapw(w: widget.project!.projectLink != null ? 30.w : 0),
               widget.project!.playStoreLink != null
                   ? InkWell(
-                      onTap: () {},
+                      onTap: () async {
+                        final Uri url =
+                            Uri.parse(widget.project!.playStoreLink!);
+                        if (await canLaunchUrl(url)) {
+                          await launchUrl(url);
+                        }
+                      },
                       child: Image.asset(
                         "assets/icon/4x/ic_google_play_4x.png",
                         height: 40.h,
@@ -351,9 +357,15 @@ class _ProjectCardState extends State<ProjectCard> {
                     )
                   : gapw(w: 0),
               gapw(w: widget.project!.playStoreLink != null ? 30.w : 0),
-              widget.project!.playStoreLink != null
+              widget.project!.appStoreLink != null
                   ? InkWell(
-                      onTap: () {},
+                      onTap: () async {
+                        final Uri url =
+                            Uri.parse(widget.project!.appStoreLink!);
+                        if (await canLaunchUrl(url)) {
+                          await launchUrl(url);
+                        }
+                      },
                       child: Image.asset(
                         "assets/icon/4x/ic_app_store_4x.png",
                         height: 40.h,
