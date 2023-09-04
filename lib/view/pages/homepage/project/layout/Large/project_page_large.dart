@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:portfolio/common/common.dart';
-import 'package:portfolio/view/pages/homepage/project/project_page_content.dart';
+import 'package:portfolio/view/pages/homepage/project/layout/Large/project_page_content_large.dart';
 
 class ProjectPageLarge extends StatefulWidget {
   const ProjectPageLarge({super.key});
@@ -83,7 +83,8 @@ class _ProjectPageLargeState extends State<ProjectPageLarge> {
                 //     ],
                 //   ),
                 // ),
-                ProjectPageContent(
+
+                ProjectPageContentLarge(
                   projCategory: ProjCategory.all,
                 ),
               ],

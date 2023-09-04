@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:portfolio/view/pages/homepage/project/layout/project_page_large.dart';
+import 'package:portfolio/view/pages/homepage/project/layout/Large/project_page_large.dart';
+import 'package:portfolio/view/pages/homepage/project/layout/small/project_page_small.dart';
 import 'package:portfolio/view/widgets/layout/adaptive_layout.dart';
 
 class ProjectPage extends StatefulWidget {
@@ -17,9 +18,8 @@ class _ProjectPageState extends State<ProjectPage> {
   Widget build(BuildContext context) {
     //final textTheme = Theme.of(context).textTheme;
     return AdaptiveLayout(
-        bodySmall: (context, constraint, screenSize) => SizedBox(
-              height: 100,
-            ),
+        bodySmall: (context, constraint, screenSize) =>
+            const ProjectPageSmall(),
         bodyLarge: (context, constraint, layout) {
           return const ProjectPageLarge();
           // return DefaultTabController(

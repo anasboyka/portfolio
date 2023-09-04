@@ -12,16 +12,19 @@ class PageNumberControl extends StatefulWidget {
   final VoidCallback? onPrevPressed;
   final VoidCallback? onNextPressed;
   final void Function(String? value)? onChanged;
-  const PageNumberControl(
-      {super.key,
-      required this.pageButtonMinWidth,
-      required this.height,
-      required this.currentPage,
-      required this.lastPage,
-      this.labelStyle,
-      this.onPrevPressed,
-      this.onNextPressed,
-      this.onChanged});
+  final double iconSize;
+  const PageNumberControl({
+    super.key,
+    required this.pageButtonMinWidth,
+    required this.height,
+    required this.currentPage,
+    required this.lastPage,
+    this.labelStyle,
+    this.onPrevPressed,
+    this.onNextPressed,
+    this.onChanged,
+    this.iconSize = 48,
+  });
 
   @override
   State<PageNumberControl> createState() => _PageNumberControlState();
@@ -61,16 +64,25 @@ class _PageNumberControlState extends State<PageNumberControl> {
         SizedBox(
           height: widget.height,
           child: Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-            SizedBox(
-              width: widget.height,
-              height: widget.height,
-              child: IconButton(
-                padding: kcaInset0,
-                alignment: Alignment.center,
-                onPressed: currentPage == 1 ? null : widget.onPrevPressed,
-                icon: const Icon(
-                  Icons.chevron_left,
-                  size: 48,
+            Center(
+              child: Material(
+                color: kccTransparent,
+                child: IconButton(
+                  color: kccWhite,
+                  constraints: BoxConstraints(
+                    maxHeight: widget.iconSize,
+                    maxWidth: widget.iconSize,
+                  ),
+                  iconSize: widget.iconSize,
+                  splashRadius: widget.iconSize * 0.5,
+                  padding: kcaInset0,
+                  alignment: Alignment.center,
+                  onPressed: currentPage == 1 ? null : widget.onPrevPressed,
+                  icon: Icon(
+                    Icons.chevron_left,
+                    size: widget.iconSize,
+                    color: currentPage == 1 ? kccgrey1 : kccWhite,
+                  ),
                 ),
               ),
             ),
@@ -99,11 +111,12 @@ class _PageNumberControlState extends State<PageNumberControl> {
                     padding: kcaInset0,
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(10),
+                      color: kccOnPrimary,
                     ),
-                    width: widget.pageButtonMinWidth + 20,
+                    width: widget.pageButtonMinWidth + 20.w,
                     offset: Offset(
                         (widget.pageButtonMinWidth -
-                                (widget.pageButtonMinWidth + 20)) /
+                                (widget.pageButtonMinWidth + 20.w)) /
                             2,
                         0),
                     //scrollPadding: kcaInset0,
@@ -123,12 +136,12 @@ class _PageNumberControlState extends State<PageNumberControl> {
                       .toList(),
                   onChanged: widget.onChanged),
             ),
-            gapw(w: 10),
+            gapw(w: 10.w),
             Text(
               '|',
               style: widget.labelStyle?.copyWith(fontWeight: kcfmedium),
             ),
-            gapw(w: 10),
+            gapw(w: 10.w),
 
             ConstrainedBox(
               constraints: BoxConstraints(
@@ -136,8 +149,7 @@ class _PageNumberControlState extends State<PageNumberControl> {
                   minHeight: widget.height),
               child: Center(
                 child: Padding(
-                  padding:
-                      EdgeInsets.symmetric(horizontal: 10.w, vertical: 0),
+                  padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 0),
                   child: Text(
                     widget.lastPage.toString(),
                     style: widget.labelStyle,
@@ -145,18 +157,25 @@ class _PageNumberControlState extends State<PageNumberControl> {
                 ),
               ),
             ),
-            SizedBox(
-              width: widget.height,
-              height: widget.height,
+            Material(
+              color: kccTransparent,
               child: IconButton(
+                color: kccWhite,
+                constraints: BoxConstraints(
+                  maxHeight: widget.iconSize,
+                  maxWidth: widget.iconSize,
+                ),
+                iconSize: widget.iconSize,
+                splashRadius: widget.iconSize * 0.5,
                 padding: kcaInset0,
                 alignment: Alignment.center,
                 onPressed: currentPage == widget.lastPage
                     ? null
                     : widget.onNextPressed,
-                icon: const Icon(
+                icon: Icon(
+                  color: currentPage == widget.lastPage ? kccgrey1 : kccWhite,
                   Icons.chevron_right,
-                  size: 48,
+                  size: widget.iconSize,
                 ),
               ),
             ),

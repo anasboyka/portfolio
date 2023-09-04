@@ -123,6 +123,7 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
       // print('max width ${screenConstraint.maxWidth}');
 
       return Scaffold(
+        backgroundColor: kccPrimary,
         key: _scaffoldKey,
         extendBodyBehindAppBar: true,
         appBar: _showAppBar ? appbarNavigation(context, layout) : null,
@@ -217,7 +218,9 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
 
   AppBar appbarNavigation(BuildContext context, Layout layout) {
     return AppBar(
-      systemOverlayStyle: SystemUiOverlayStyle(
+      elevation: 0,
+      shadowColor: kccTransparent,
+      systemOverlayStyle: const SystemUiOverlayStyle(
         statusBarColor: Colors.transparent,
         // systemNavigationBarColor: Colors.transparent,
         // systemNavigationBarDividerColor: Colors.transparent,

@@ -7,15 +7,15 @@ import 'package:portfolio/data/remote/services/firebase/firestoredb.dart';
 import 'package:portfolio/view/pages/homepage/project/project_card.dart';
 import 'package:portfolio/view/widgets/navigation/page_number_navigation/page_number_control.dart';
 
-class ProjectPageContent extends StatefulWidget {
+class ProjectPageContentLarge extends StatefulWidget {
   final ProjCategory projCategory;
-  const ProjectPageContent({super.key, required this.projCategory});
+  const ProjectPageContentLarge({super.key, required this.projCategory});
 
   @override
-  State<ProjectPageContent> createState() => _ProjectPageContentState();
+  State<ProjectPageContentLarge> createState() => _ProjectPageContentLargeState();
 }
 
-class _ProjectPageContentState extends State<ProjectPageContent> {
+class _ProjectPageContentLargeState extends State<ProjectPageContentLarge> {
   int currentPage = 1;
   @override
   Widget build(BuildContext context) {

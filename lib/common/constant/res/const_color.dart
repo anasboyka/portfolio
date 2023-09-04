@@ -34,14 +34,14 @@ const kccBlack2 = Color(0xffB1B3B4);
 const kccBlack3 = Color(0xff020202);
 const kccBlack4 = Color(0xff555555);
 const kccBlack5 = Color(0xffB1B3B4);
-const kccBlack6 = Color(0xffB1B3B4);
+const kccBlack6 = Color(0xff272727);
+const kccBlack7 = Color(0xffB1B3B4);
 
 //white
 const kccTransparent = Colors.transparent;
 const kccWhite1 = Color(0xffFAFAFB);
 const kccWhite2 = Color(0xffEBEEF0);
 const kccWhite3 = Color(0xffd9d9d9);
-
 
 const kccBtnLight = Color(0xff923423);
 const kccBtnDark = Color(0xff454545);
