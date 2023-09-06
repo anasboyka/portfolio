@@ -9,3 +9,11 @@ const kcwDivider = Divider(
   thickness: 1,
 );
 
+Container testWidget(
+    {double height = 300, double width = 100, Color color = kccGreen1}) {
+  return Container(
+    height: height,
+    width: width,
+    color: color,
+  );
+}

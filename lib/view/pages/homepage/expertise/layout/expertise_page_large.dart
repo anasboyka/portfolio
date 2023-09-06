@@ -81,7 +81,7 @@ class _ExpertisePageLargeState extends State<ExpertisePageLarge> {
                     gaph(h: 14.h),
                     Text(
                       content,
-                      style: kcfLBodySmall(),
+                      style: kcfLBodyLarge(),
                       // textTheme.bodySmall?.copyWith(fontWeight: kcfregular),
                     ),
                     gaph(h: 40.h),

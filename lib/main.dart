@@ -5,6 +5,6 @@ import 'package:portfolio/my_app.dart';
 
 void main() async {
   await InitTask.initServices();
-  print(isMobile);
+  // print(isMobile);
   runApp(const MyApp());
 }

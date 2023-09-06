@@ -1,7 +1,7 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
+// import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:portfolio/common/common.dart';
 import 'package:portfolio/data/models/resume_file.dart';
@@ -64,38 +64,38 @@ class _ContactPageSmallState extends State<ContactPageSmall> {
           width: double.maxFinite,
           color: kccOnPrimary,
           child: Padding(
-            padding: EdgeInsets.symmetric(horizontal: 20.w),
+            padding: EdgeInsets.symmetric(horizontal: 20),
             child: Column(
               children: [
-                gaph(h: 20.h),
+                gaph(h: 20),
                 Text('Contact',
-                    style: kcfLHeadlineSmall().copyWith(
+                    style: kcfLHeadlineSmall(r: false).copyWith(
                       fontWeight: kcfbold,
                     )),
                 Text("Hire or Collaborate with me ", style: kcfSBodyMedium()),
-                gaph(h: 17.h),
+                gaph(h: 17),
                 Container(
                   color: kccWhite,
                   height: 2,
                 ),
                 gaphr(),
-                Text('Send Me a Message', style: kcfLHeadlineSmall()),
-                gaph(h: 8.h),
+                Text('Send Me a Message', style: kcfLHeadlineSmall(r: false)),
+                gaph(h: 8),
                 SelectableText(
                   kcsFullName,
                   style: kcfSBodyMedium(),
                 ),
-                gaph(h: 10.h),
+                gaph(h: 10),
                 SelectableText(
                   kcsAdress,
                   style: kcfSBodyMedium().copyWith(fontStyle: FontStyle.italic),
                   textAlign: TextAlign.center,
                 ),
-                gaph(h: 10.h),
+                gaph(h: 10),
                 MaterialButton(
                   elevation: 1,
                   shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(8.r),
+                    borderRadius: BorderRadius.circular(8),
                     side: const BorderSide(
                       color: kccSecondary,
                       width: 2,
@@ -112,38 +112,37 @@ class _ContactPageSmallState extends State<ContactPageSmall> {
                     }
                   },
                   child: Padding(
-                    padding:
-                        EdgeInsets.symmetric(horizontal: 8.w, vertical: 2.h),
+                    padding: EdgeInsets.symmetric(horizontal: 8, vertical: 2),
                     child: Row(
                       mainAxisSize: MainAxisSize.min,
                       children: [
                         Text(
                           'View Resume',
-                          style: kcfLLabelLarge().copyWith(
+                          style: kcfLLabelLarge(r: false).copyWith(
                               fontWeight: kcfmedium, color: kccSecondary),
                         ),
-                        gapw(w: 5.w),
+                        gapw(w: 5),
                         Icon(
                           Icons.contact_page_outlined,
                           color: kccSecondary,
-                          size: 24.w,
+                          size: 24,
                         ),
                       ],
                     ),
                   ),
                 ),
-                gaph(h: 20.h),
+                gaph(h: 20),
                 Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: socialLinks
                         .map(
                           (e) => Padding(
-                            padding: EdgeInsets.symmetric(vertical: 4.w),
+                            padding: EdgeInsets.symmetric(vertical: 4),
                             child: e.copyWith(
                               row: false,
-                              iconWidth: 24.w,
+                              iconWidth: 24,
                               style: kcfSBodySmall(),
-                              gap: 10.w,
+                              gap: 10,
                             ),
                           ),
                         )
@@ -156,7 +155,7 @@ class _ContactPageSmallState extends State<ContactPageSmall> {
         Container(
           width: double.maxFinite,
           color: kccSecondary,
-          padding: EdgeInsets.symmetric(horizontal: 20.w),
+          padding: EdgeInsets.symmetric(horizontal: 20),
           child: Form(
             key: _formKey,
             child: Column(
@@ -165,7 +164,8 @@ class _ContactPageSmallState extends State<ContactPageSmall> {
                 gaphr(),
                 Text(
                   'Love to hear from you, Lets get in touch',
-                  style: kcfLBodyMedium().copyWith(fontWeight: kcfmedium),
+                  style:
+                      kcfLBodyMedium(r: false).copyWith(fontWeight: kcfmedium),
                 ),
                 gaphr(),
                 TextFormField(
@@ -181,7 +181,7 @@ class _ContactPageSmallState extends State<ContactPageSmall> {
                     return null;
                   },
                   decoration: InputDecoration(
-                    contentPadding: EdgeInsets.symmetric(horizontal: 12.w),
+                    contentPadding: EdgeInsets.symmetric(horizontal: 12),
                     border: defaultBorder(),
                     enabledBorder: defaultBorder(),
                     focusedBorder: defaultBorder(),
@@ -211,7 +211,7 @@ class _ContactPageSmallState extends State<ContactPageSmall> {
                     return null;
                   },
                   decoration: InputDecoration(
-                    contentPadding: EdgeInsets.symmetric(horizontal: 12.w),
+                    contentPadding: EdgeInsets.symmetric(horizontal: 12),
                     border: defaultBorder(),
                     enabledBorder: defaultBorder(),
                     focusedBorder: defaultBorder(),
@@ -235,7 +235,7 @@ class _ContactPageSmallState extends State<ContactPageSmall> {
                   ),
                   controller: phoneCon,
                   decoration: InputDecoration(
-                    contentPadding: EdgeInsets.symmetric(horizontal: 12.w),
+                    contentPadding: EdgeInsets.symmetric(horizontal: 12),
                     border: defaultBorder(),
                     enabledBorder: defaultBorder(),
                     focusedBorder: defaultBorder(),
@@ -259,7 +259,7 @@ class _ContactPageSmallState extends State<ContactPageSmall> {
                   ),
                   controller: companyCon,
                   decoration: InputDecoration(
-                    contentPadding: EdgeInsets.symmetric(horizontal: 12.w),
+                    contentPadding: EdgeInsets.symmetric(horizontal: 12),
                     border: defaultBorder(),
                     enabledBorder: defaultBorder(),
                     focusedBorder: defaultBorder(),
@@ -291,7 +291,7 @@ class _ContactPageSmallState extends State<ContactPageSmall> {
                   },
                   decoration: InputDecoration(
                     contentPadding:
-                        EdgeInsets.symmetric(horizontal: 12.w, vertical: 8),
+                        EdgeInsets.symmetric(horizontal: 12, vertical: 8),
                     border: defaultBorder(),
                     enabledBorder: defaultBorder(),
                     focusedBorder: defaultBorder(),
@@ -322,7 +322,8 @@ class _ContactPageSmallState extends State<ContactPageSmall> {
                             }
                             int result = await sendEmail();
                             if (result != 200) {
-                              print(result);
+                              // print(result);
+                              messageStatus = "error $result";
                             } else {
                               if (mounted) {
                                 setState(() {
@@ -349,7 +350,7 @@ class _ContactPageSmallState extends State<ContactPageSmall> {
                           }
                         }
                       },
-                      minWidth: 120.w,
+                      minWidth: 120,
                       padding: kcaInset0,
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(6),
@@ -357,8 +358,8 @@ class _ContactPageSmallState extends State<ContactPageSmall> {
                       ),
                       color: kccOnPrimary,
                       child: Padding(
-                        padding: EdgeInsets.symmetric(
-                            horizontal: 16.w, vertical: 10.h),
+                        padding:
+                            EdgeInsets.symmetric(horizontal: 16, vertical: 10),
                         child: Text('Submit',
                             style:
                                 kcfSBodyLarge().copyWith(fontWeight: kcfbold)),

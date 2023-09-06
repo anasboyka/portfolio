@@ -1,6 +1,6 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
+// import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:portfolio/common/common.dart';
 import 'package:portfolio/data/models/project_data.dart';
@@ -10,7 +10,9 @@ import 'package:portfolio/view/widgets/navigation/page_number_navigation/page_nu
 
 class ProjectPageContentSmall extends StatefulWidget {
   final ProjCategory projCategory;
-  const ProjectPageContentSmall({super.key, required this.projCategory});
+  final BoxConstraints constraint;
+  const ProjectPageContentSmall(
+      {super.key, required this.projCategory, required this.constraint});
 
   @override
   State<ProjectPageContentSmall> createState() =>
@@ -53,13 +55,14 @@ class _ProjectPageContentSmallState extends State<ProjectPageContentSmall> {
                   itemCount: projects.length,
                   itemBuilder: (context, index, realIndex) {
                     return ProjectCardSmall(
+                      constraint: widget.constraint,
                       key: UniqueKey(),
                       project: projects[index],
                       autoPlay: currentIndex == index,
                     );
                   },
                   options: CarouselOptions(
-                    height: 330.h,
+                    height: widget.constraint.maxWidth > 480 ? 480 : 330,
                     enableInfiniteScroll: false,
                     enlargeCenterPage: true,
                     onPageChanged: (index, reason) {
@@ -82,13 +85,13 @@ class _ProjectPageContentSmallState extends State<ProjectPageContentSmall> {
                 int itemCount = snapshot.data;
                 int lastPage = itemCount;
                 return PageNumberControl(
-                  iconSize: 36.w,
-                  pageButtonMinWidth: 36.w,
-                  height: 36.w,
+                  iconSize: 36,
+                  pageButtonMinWidth: 36,
+                  height: 36,
                   currentPage: currentIndex + 1,
                   lastPage: lastPage,
                   labelStyle: GoogleFonts.poppins(
-                    fontSize: 24.sp,
+                    fontSize: 24,
                     color: kccWhite,
                     fontWeight: kcfmedium,
                   ),

@@ -120,7 +120,7 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
     // final textTheme = Theme.of(context).textTheme;
     return AdaptiveLayout(bodyLarge: (context, screenConstraint, layout) {
       // print('layout $layout');
-      // print('max width ${screenConstraint.maxWidth}');
+      print('max width ${screenConstraint.maxWidth}');
 
       return Scaffold(
         backgroundColor: kccPrimary,
@@ -217,6 +217,7 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
   }
 
   AppBar appbarNavigation(BuildContext context, Layout layout) {
+  
     return AppBar(
       elevation: 0,
       shadowColor: kccTransparent,
@@ -239,9 +240,9 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
           ? [
               IconButton(
                 alignment: Alignment.center,
-                iconSize: layout != Layout.small ? 48.w : 36.w,
-                splashRadius: layout != Layout.small ? 60 : 25,
-                padding: EdgeInsets.all(5.w),
+                iconSize: layout != Layout.large ? 36 : 48.w,
+                splashRadius: layout != Layout.large ? 25 : 60,
+                padding: EdgeInsets.all(layout != Layout.large ? 0 : 5.w),
                 onPressed: () {
                   //Scaffold.of(context).openEndDrawer();
                   if (!_isPlay) {
@@ -256,7 +257,7 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
                 icon: AnimatedIcon(
                   progress: _animationController,
                   icon: AnimatedIcons.menu_close,
-                  size: layout != Layout.small ? 48.w : 36.w,
+                  size: layout != Layout.large ? 36 : 48.w,
                 ),
               ),
               gapwr(w: 20)
@@ -277,9 +278,12 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
       elevation: 3,
       width: layout != Layout.small ? 450.w : null,
       child: Padding(
-        padding: EdgeInsets.symmetric(horizontal: 30.w, vertical: 20.h),
+        padding: EdgeInsets.symmetric(
+            horizontal: layout != Layout.large ? 20 : 30.w,
+            vertical: layout != Layout.large ? 20 : 20.h),
         child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-          ...listNavigationButton(kcfLDisplayMedium().copyWith(fontSize: 30.sp)
+          ...listNavigationButton(kcfLDisplayMedium()
+                      .copyWith(fontSize: layout != Layout.large ? 20 : 30.sp)
                   // textTheme.displayMedium
                   //     ?.copyWith(fontWeight: kcfregular, fontSize: 30.sp),
                   )
@@ -714,7 +718,7 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
                                 setState(() {});
                                 //This rebuilds the dropdownMenu Widget to update the check mark
                                 menuSetState(() {});
-                                print(selectedCategories.length);
+                                // print(selectedCategories.length);
                               },
                               child: Container(
                                 width: double.infinity,
@@ -785,7 +789,7 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
               onPressed: () {
                 setState(() {
                   tags.add(tagcon.text);
-                  print(tags.length);
+                  // print(tags.length);
                 });
               },
               icon: const Icon(Icons.add))

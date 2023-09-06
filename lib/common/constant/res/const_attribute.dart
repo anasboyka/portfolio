@@ -126,17 +126,27 @@ TextStyle kcfLBodySmall({bool r = true}) => GoogleFonts.inter(
       fontWeight: kcfregular,
     );
 
-TextStyle kcfSBodyLarge({bool r = true}) => GoogleFonts.inter(
+TextStyle kcfSTitleMedium({bool r = false}) => GoogleFonts.inter(
+      color: kccWhite,
+      fontSize: r ? kcfSTitleMediumSize.sp : kcfSTitleMediumSize, //20
+      fontWeight: kcfmedium,
+    );
+TextStyle kcfSTitleSmall({bool r = false}) => GoogleFonts.inter(
+      color: kccWhite,
+      fontSize: r ? kcfSTitleSmallSize.sp : kcfSTitleSmallSize, //18
+      fontWeight: kcfmedium,
+    );
+TextStyle kcfSBodyLarge({bool r = false}) => GoogleFonts.inter(
       color: kccWhite,
       fontSize: r ? kcfSBodyLargeSize.sp : kcfSBodyLargeSize, //16
       fontWeight: kcfregular,
     );
-TextStyle kcfSBodyMedium({bool r = true}) => GoogleFonts.inter(
+TextStyle kcfSBodyMedium({bool r = false}) => GoogleFonts.inter(
       color: kccWhite,
       fontSize: r ? kcfSBodyMediumize.sp : kcfSBodyMediumize, //14
       fontWeight: kcfregular,
     );
-TextStyle kcfSBodySmall({bool r = true}) => GoogleFonts.inter(
+TextStyle kcfSBodySmall({bool r = false}) => GoogleFonts.inter(
       color: kccWhite,
       fontSize: r ? kcfSBodySmallSize.sp : kcfSBodySmallSize, //12
       fontWeight: kcfregular,
@@ -146,7 +156,8 @@ const double kcaMediumScreenMinWidth = 430;
 
 const kcaInset0 = EdgeInsets.zero;
 
-bool isMobile = (Platform.isAndroid || Platform.isIOS);
+bool isMobile = (defaultTargetPlatform == TargetPlatform.iOS ||
+    defaultTargetPlatform == TargetPlatform.android);
 final isWebMobile = kIsWeb &&
     (defaultTargetPlatform == TargetPlatform.iOS ||
         defaultTargetPlatform == TargetPlatform.android);

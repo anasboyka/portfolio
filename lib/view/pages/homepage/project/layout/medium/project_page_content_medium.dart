@@ -1,38 +1,35 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:portfolio/common/common.dart';
 import 'package:portfolio/data/models/project_data.dart';
 import 'package:portfolio/data/remote/services/firebase/firestoredb.dart';
-import 'package:portfolio/view/pages/homepage/project/layout/large/project_card_large.dart';
-
+import 'package:portfolio/view/pages/homepage/project/layout/medium/project_card_medium.dart';
 import 'package:portfolio/view/widgets/navigation/page_number_navigation/page_number_control.dart';
 
-class ProjectPageContentLarge extends StatefulWidget {
+class ProjectPageContentMedium extends StatefulWidget {
   final ProjCategory projCategory;
-  const ProjectPageContentLarge({super.key, required this.projCategory});
+  const ProjectPageContentMedium({super.key, required this.projCategory});
 
   @override
-  State<ProjectPageContentLarge> createState() =>
-      _ProjectPageContentLargeState();
+  State<ProjectPageContentMedium> createState() =>
+      _ProjectPageContentMediumState();
 }
 
-class _ProjectPageContentLargeState extends State<ProjectPageContentLarge> {
+class _ProjectPageContentMediumState extends State<ProjectPageContentMedium> {
   int currentPage = 1;
   @override
   Widget build(BuildContext context) {
-    // final textTheme = Theme.of(context).textTheme;
     return Column(
       children: [
-        gaph(h: 70.h),
+        gaph(h: 50),
         FutureBuilder(
             future:
                 FirestoreDb().getProjectByCategories(widget.projCategory.text),
             builder: (context, AsyncSnapshot snapshot) {
-              // if (snapshot.hasError) {
+              // if (snapshotasError) {
               //   print(snapshot.error);
               //   print(snapshot.stackTrace);
-              //   print(snapshot.hasError);
+              //   print(snapshotasError);
               //   return SizedBox();
               // }
               // if (snapshot.connectionState == ConnectionState.none) {
@@ -74,12 +71,12 @@ class _ProjectPageContentLargeState extends State<ProjectPageContentLarge> {
                 int itemCount = snapshot.data;
                 int lastPage = (itemCount / 2).ceil();
                 return PageNumberControl(
-                  pageButtonMinWidth: 60.w,
-                  height: 60.h,
+                  pageButtonMinWidth: 60,
+                  height: 60,
                   currentPage: currentPage,
                   lastPage: lastPage,
                   labelStyle: GoogleFonts.poppins(
-                    fontSize: 36.sp,
+                    fontSize: 36,
                     color: kccWhite,
                     fontWeight: kcfmedium,
                   ),
@@ -122,13 +119,13 @@ class _ProjectPageContentLargeState extends State<ProjectPageContentLarge> {
     return Column(
       mainAxisSize: MainAxisSize.min,
       children: [
-        ProjectCardLarge(
+        ProjectCardMedium(
           autoPlay: true,
           key: UniqueKey(),
           project: projectTop,
         ),
-        gaph(h: 30.h),
-        ProjectCardLarge(
+        gaph(h: 30),
+        ProjectCardMedium(
           autoPlay: true,
           key: UniqueKey(),
           project: projectBottom,

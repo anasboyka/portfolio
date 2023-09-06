@@ -1,3 +1,4 @@
+import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -8,19 +9,29 @@ import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class ProjectCardLarge extends StatefulWidget {
-  const ProjectCardLarge({super.key, this.project});
+  const ProjectCardLarge({super.key, this.project, this.autoPlay = false});
 
   final ProjectData? project;
+  final bool autoPlay;
 
   @override
   State<ProjectCardLarge> createState() => _ProjectCardLargeState();
 }
 
 class _ProjectCardLargeState extends State<ProjectCardLarge> {
-  bool readMore = false;
-  PageController controller = PageController(initialPage: 0);
-  int activePage = 0;
+  bool readMore = false, autoPlay = false;
+  // PageController controller = PageController(initialPage: 0);
+  CarouselController carouselController = CarouselController();
+  int autoplayDuration = 4;
+
+  int activeImage = 0, activeDescription = 0;
   double pictureWidth = 610.w;
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    autoPlay = widget.autoPlay;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -44,37 +55,67 @@ class _ProjectCardLargeState extends State<ProjectCardLarge> {
                       bottomLeft: Radius.circular(30)),
                   child: SizedBox(
                     width: pictureWidth,
+                    height: double.maxFinite,
                     child: Stack(
                       alignment: Alignment.center,
                       children: [
-                        PageView(
-                          onPageChanged: (value) {
-                            setState(() {
-                              activePage = value;
-                            });
-                          },
-                          controller: controller,
-                          children: widget.project!.imageUrl
-                              .map(
-                                (e) => Image.network(
-                                  e,
-                                  fit: BoxFit.cover,
-                                ),
-                              )
-                              .toList(),
+                        Positioned.fill(
+                          child: CarouselSlider(
+                            items: widget.project!.imageUrl
+                                .map(
+                                  (e) => Image.network(
+                                    e,
+                                    width: double.infinity,
+                                    height: double.infinity,
+                                    fit: BoxFit.cover,
+                                  ),
+                                )
+                                .toList(),
+                            carouselController: carouselController,
+                            options: CarouselOptions(
+                              //height: 178,
+                              viewportFraction: 1,
+                              autoPlay: autoPlay,
+                              autoPlayInterval:
+                                  Duration(seconds: autoplayDuration),
+                              onPageChanged: (index, reason) {
+                                setState(() {
+                                  activeImage = index;
+                                });
+                              },
+                            ),
+                          ),
                         ),
+                        // PageView(
+                        //   onPageChanged: (value) {
+                        //     setState(() {
+                        //       activePage = value;
+                        //     });
+                        //   },
+                        //   controller: controller,
+                        //   children: widget.project!.imageUrl
+                        //       .map(
+                        //         (e) => Image.network(
+                        //           e,
+                        //           fit: BoxFit.cover,
+                        //         ),
+                        //       )
+                        //       .toList(),
+                        // ),
                         widget.project!.imageUrl.length != 1
                             ? Positioned(
                                 bottom: 50,
-                                child: SmoothPageIndicator(
-                                  controller: controller,
+                                child: AnimatedSmoothIndicator(
+                                  activeIndex: activeImage,
                                   count: widget.project!.imageUrl.length,
-                                  effect: const JumpingDotEffect(
+                                  effect: const WormEffect(
                                       activeDotColor: kccSecondary,
                                       dotColor: kccSecondary,
                                       strokeWidth: 2,
                                       paintStyle: PaintingStyle.stroke,
-                                      verticalOffset: 10),
+                                      type: WormType.normal
+                                      // verticalOffset: 10,
+                                      ),
                                 ),
                               )
                             : const SizedBox(),
@@ -86,13 +127,23 @@ class _ProjectCardLargeState extends State<ProjectCardLarge> {
                                   children: [
                                     IconButton(
                                       hoverColor: kccgrey4.withOpacity(0.2),
-                                      onPressed: activePage == 0
+                                      onPressed: activeImage == 0
                                           ? null
-                                          : () {
-                                              controller.previousPage(
+                                          : () async {
+                                              setState(() {
+                                                autoPlay = false;
+                                              });
+                                              carouselController.previousPage(
                                                   duration: const Duration(
                                                       milliseconds: 400),
                                                   curve: Curves.easeInOutCubic);
+                                              await Future.delayed(
+                                                  const Duration(seconds: 8));
+                                              if (mounted) {
+                                                setState(() {
+                                                  autoPlay = true;
+                                                });
+                                              }
                                             },
                                       icon: Icon(
                                         Icons.chevron_left,
@@ -103,15 +154,25 @@ class _ProjectCardLargeState extends State<ProjectCardLarge> {
                                     IconButton(
                                       highlightColor: kccgrey4.withOpacity(0.3),
                                       hoverColor: kccgrey5.withOpacity(0.2),
-                                      onPressed: activePage ==
+                                      onPressed: activeImage ==
                                               widget.project!.imageUrl.length -
                                                   1
                                           ? null
-                                          : () {
-                                              controller.nextPage(
+                                          : () async {
+                                              setState(() {
+                                                autoPlay = false;
+                                              });
+                                              carouselController.nextPage(
                                                   duration: const Duration(
                                                       milliseconds: 400),
                                                   curve: Curves.easeInOutCubic);
+                                              await Future.delayed(
+                                                  const Duration(seconds: 8));
+                                              if (mounted) {
+                                                setState(() {
+                                                  autoPlay = true;
+                                                });
+                                              }
                                             },
                                       icon: Icon(
                                         Icons.chevron_right,
@@ -317,8 +378,9 @@ class _ProjectCardLargeState extends State<ProjectCardLarge> {
             children: [
               widget.project!.projectLink != null
                   ? SizedBox(
-                      height: 40.h,
+                      height: 60.h,
                       child: MaterialButton(
+                        padding: kcaInset0,
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(6),
                           // side: BorderSide(color: kccSecondary),
@@ -331,11 +393,14 @@ class _ProjectCardLargeState extends State<ProjectCardLarge> {
                             await launchUrl(url);
                           }
                         },
-                        child: Text(
-                          "View Project",
-                          style: kcfLBodySmall(),
-                          //  textTheme.bodySmall?.copyWith(
-                          //     fontWeight: kcfregular, fontSize: 18.sp),
+                        child: Padding(
+                          padding: EdgeInsets.symmetric(horizontal: 16.w),
+                          child: Text(
+                            "View Project",
+                            style: kcfLBodySmall(),
+                            //  textTheme.bodySmall?.copyWith(
+                            //     fontWeight: kcfregular, fontSize: 18.sp),
+                          ),
                         ),
                       ),
                     )
@@ -352,7 +417,7 @@ class _ProjectCardLargeState extends State<ProjectCardLarge> {
                       },
                       child: Image.asset(
                         "assets/icon/4x/ic_google_play_4x.png",
-                        height: 40.h,
+                        height: 60.h,
                       ),
                     )
                   : gapw(w: 0),
@@ -368,15 +433,16 @@ class _ProjectCardLargeState extends State<ProjectCardLarge> {
                       },
                       child: Image.asset(
                         "assets/icon/4x/ic_app_store_4x.png",
-                        height: 40.h,
+                        height: 60.h,
                       ),
                     )
                   : gapw(w: 0),
               gapw(w: widget.project!.appStoreLink != null ? 30.w : 0),
               widget.project!.projectDemo != null
                   ? SizedBox(
-                      height: 40.h,
+                      height: 60.h,
                       child: MaterialButton(
+                        padding: kcaInset0,
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(6),
                           // side: BorderSide(color: kccSecondary),
@@ -389,11 +455,14 @@ class _ProjectCardLargeState extends State<ProjectCardLarge> {
                             await launchUrl(url);
                           }
                         },
-                        child: Text(
-                          "Project Video",
-                          style: kcfLBodySmall(),
-                          // textTheme.bodySmall?.copyWith(
-                          //     fontWeight: kcfregular, fontSize: 18.sp),
+                        child: Padding(
+                          padding: EdgeInsets.symmetric(horizontal: 16.w),
+                          child: Text(
+                            "Project Video",
+                            style: kcfLBodySmall(),
+                            // textTheme.bodySmall?.copyWith(
+                            //     fontWeight: kcfregular, fontSize: 18.sp),
+                          ),
                         ),
                       ),
                     )

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
+// import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:portfolio/common/common.dart';
 import 'package:timeline_tile/timeline_tile.dart';
 
@@ -20,29 +20,29 @@ class _QualificationSmallState extends State<QualificationSmall> {
       width: double.maxFinite,
       child: Column(
         children: [
-          gaph(h: 20.h),
+          gaph(h: 20),
           Text('Qualification',
               style:
                   //textTheme.displayLarge?.copyWith(fontSize: 50.sp),
-                  kcfLHeadlineSmall().copyWith(fontWeight: kcfbold)),
+                  kcfLHeadlineSmall(r: false).copyWith(fontWeight: kcfbold)),
           Text("My education & experience",
               style: kcfSBodyMedium().copyWith(color: kccWhite)
               // textTheme.bodyMedium?.copyWith(
               //     color: kccgrey1, fontWeight: kcfregular, fontSize: 20.sp),
               ),
-          gaph(h: 16.h),
+          gaph(h: 16),
           DefaultTabController(
             length: 2,
             child: TabBar(
               indicatorColor: kccWhite3,
               indicatorSize: TabBarIndicatorSize.label,
               indicatorPadding: EdgeInsets.zero,
-              unselectedLabelStyle: kcfLTitleSmall(),
+              unselectedLabelStyle: kcfLTitleSmall(r: false),
               isScrollable: true,
-              labelStyle: kcfLTitleLarge()
-                  .copyWith(fontWeight: FontWeight.bold, fontSize: 20.sp),
+              labelStyle: kcfLTitleLarge(r: false)
+                  .copyWith(fontWeight: FontWeight.bold, fontSize: 20),
               labelColor: kccWhite,
-              labelPadding: EdgeInsets.symmetric(horizontal: 25.w),
+              labelPadding: EdgeInsets.symmetric(horizontal: 25),
               padding: EdgeInsets.zero,
               dividerColor: kccTransparent,
               onTap: (value) {
@@ -66,12 +66,12 @@ class _QualificationSmallState extends State<QualificationSmall> {
           ),
           gaph(h: 12),
           Padding(
-            padding: EdgeInsets.symmetric(horizontal: 20.w),
+            padding: EdgeInsets.symmetric(horizontal: 20),
             child: ClipRRect(
-              borderRadius: BorderRadius.circular(8.r),
+              borderRadius: BorderRadius.circular(8),
               child: Container(
                 color: kccWhite3,
-                padding: EdgeInsets.only(bottom: 38.w),
+                padding: EdgeInsets.only(bottom: 38),
                 width: double.maxFinite,
                 child: IndexedStack(
                   index: currentIndex,
@@ -91,7 +91,7 @@ class _QualificationSmallState extends State<QualificationSmall> {
 
   Widget experienceDesign() {
     return Padding(
-      padding: EdgeInsets.symmetric(horizontal: 20.w),
+      padding: EdgeInsets.symmetric(horizontal: 20),
       child: Column(
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -102,15 +102,15 @@ class _QualificationSmallState extends State<QualificationSmall> {
             indicatorStyle: IndicatorStyle(
               indicatorXY: 0.1,
               padding: kcaInset0,
-              width: 12.w,
-              height: 12.w,
+              width: 12,
+              height: 12,
               color: kccSecondary,
             ),
             afterLineStyle: const LineStyle(color: kccSecondary, thickness: 4),
             alignment: TimelineAlign.start,
             axis: TimelineAxis.vertical,
             endChild: Padding(
-              padding: EdgeInsets.only(left: 12.w, bottom: 50.h),
+              padding: EdgeInsets.only(left: 12, bottom: 50),
               child: experienceContent(kcsExperience1Company,
                   kcsExperience1Role, kcsExperience1Duration),
             ),
@@ -119,8 +119,8 @@ class _QualificationSmallState extends State<QualificationSmall> {
             indicatorStyle: IndicatorStyle(
               indicatorXY: 0.1,
               padding: kcaInset0,
-              width: 12.w,
-              height: 12.w,
+              width: 12,
+              height: 12,
               color: kccSecondary,
             ),
             beforeLineStyle: const LineStyle(color: kccSecondary, thickness: 4),
@@ -129,7 +129,7 @@ class _QualificationSmallState extends State<QualificationSmall> {
             alignment: TimelineAlign.start,
             axis: TimelineAxis.vertical,
             endChild: Padding(
-              padding: EdgeInsets.only(left: 12.w),
+              padding: EdgeInsets.only(left: 12),
               child: experienceContent(kcsExperience2Company,
                   kcsExperience2Role, kcsExperience2Duration),
             ),
@@ -150,7 +150,7 @@ class _QualificationSmallState extends State<QualificationSmall> {
           // textTheme.headlineSmall
           //     ?.copyWith(color: kccPrimary, fontSize: 28.sp),
         ),
-        gaph(h: 4.h),
+        gaph(h: 4),
         Text(
           company,
           style: kcfSBodyMedium()
@@ -161,7 +161,7 @@ class _QualificationSmallState extends State<QualificationSmall> {
           //     fontWeight: kcfregular,
           //     fontSize: 20.sp),
         ),
-        gaph(h: 4.h),
+        gaph(h: 4),
         Text(duration, style: kcfSBodyMedium().copyWith(color: kccBlack4)
             // textTheme.bodyMedium?.copyWith(
             //     color: kccblack4, fontWeight: kcfregular, fontSize: 20.sp),
@@ -172,7 +172,7 @@ class _QualificationSmallState extends State<QualificationSmall> {
 
   Widget educationDesign() {
     return Padding(
-      padding: EdgeInsets.symmetric(horizontal: 20.w),
+      padding: EdgeInsets.symmetric(horizontal: 20),
       child: Column(
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -183,15 +183,15 @@ class _QualificationSmallState extends State<QualificationSmall> {
             indicatorStyle: IndicatorStyle(
               indicatorXY: 0.1,
               padding: kcaInset0,
-              width: 12.w,
-              height: 12.w,
+              width: 12,
+              height: 12,
               color: kccSecondary,
             ),
             afterLineStyle: const LineStyle(color: kccSecondary, thickness: 4),
             alignment: TimelineAlign.start,
             axis: TimelineAxis.vertical,
             endChild: Padding(
-              padding: EdgeInsets.only(left: 12.w, bottom: 50.h),
+              padding: EdgeInsets.only(left: 12, bottom: 50),
               child: educationContent(
                 kcsEducationDegree,
                 kcsEducationDegreeSchool,
@@ -204,8 +204,8 @@ class _QualificationSmallState extends State<QualificationSmall> {
             indicatorStyle: IndicatorStyle(
               indicatorXY: 0.1,
               padding: kcaInset0,
-              width: 12.w,
-              height: 12.w,
+              width: 12,
+              height: 12,
               color: kccSecondary,
             ),
             beforeLineStyle: const LineStyle(color: kccSecondary, thickness: 4),
@@ -214,7 +214,7 @@ class _QualificationSmallState extends State<QualificationSmall> {
             alignment: TimelineAlign.start,
             axis: TimelineAxis.vertical,
             endChild: Padding(
-              padding: EdgeInsets.only(left: 12.w),
+              padding: EdgeInsets.only(left: 12),
               child: educationContent(
                 kcsEducationDiploma,
                 kcsEducationDiplomaSchool,
@@ -237,10 +237,10 @@ class _QualificationSmallState extends State<QualificationSmall> {
           education,
           style: kcfSBodyLarge()
               .copyWith(color: kccPrimary, fontWeight: kcfsemibold),
-          // textTheme.headlineSmall
+          // textThemeeadlineSmall
           //     ?.copyWith(color: kccPrimary, fontSize: 24.sp),
         ),
-        gaph(h: 4.h),
+        gaph(h: 4),
         Text(school,
             style: kcfSBodyMedium()
                 .copyWith(color: kccBlack, fontStyle: FontStyle.italic)
@@ -250,12 +250,12 @@ class _QualificationSmallState extends State<QualificationSmall> {
             //     fontWeight: kcfregular,
             //     fontSize: 20.sp),
             ),
-        gaph(h: 4.h),
+        gaph(h: 4),
         Text(duration, style: kcfSBodyMedium().copyWith(color: kccBlack4)
             // textTheme.bodyMedium?.copyWith(
             //     color: kccblack4, fontWeight: kcfregular, fontSize: 20.sp),
             ),
-        gaph(h: 4.h),
+        gaph(h: 4),
         Text(result,
             style: kcfSBodyMedium()
                 .copyWith(color: kccBlack, fontWeight: kcfmedium)

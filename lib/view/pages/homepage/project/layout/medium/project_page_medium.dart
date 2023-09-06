@@ -1,24 +1,17 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:portfolio/common/common.dart';
-import 'package:portfolio/view/pages/homepage/project/layout/large/project_page_content_large.dart';
+import 'package:portfolio/view/pages/homepage/project/layout/medium/project_page_content_medium.dart';
 
-class ProjectPageLarge extends StatefulWidget {
-  const ProjectPageLarge({super.key});
+class ProjectPageMedium extends StatelessWidget {
+  const ProjectPageMedium({super.key});
 
-  @override
-  State<ProjectPageLarge> createState() => _ProjectPageLargeState();
-}
-
-class _ProjectPageLargeState extends State<ProjectPageLarge> {
   @override
   Widget build(BuildContext context) {
-    // final textTheme = Theme.of(context).textTheme;
     return DefaultTabController(
       length: 5,
       child: Column(
         children: [
-          gaph(h: 20.h),
+          gaph(h: 20),
           Text('Projects',
               style: kcfLDisplayLarge().copyWith(fontWeight: kcfbold)
               // textTheme.displayLarge?.copyWith(fontSize: 50.sp),
@@ -29,9 +22,9 @@ class _ProjectPageLargeState extends State<ProjectPageLarge> {
             // textTheme.bodyMedium?.copyWith(
             //     color: kccgrey1, fontWeight: kcfregular, fontSize: 20.sp),
           ),
-          gaph(h: 50.h),
+          gaph(h: 50),
           Padding(
-            padding: EdgeInsets.symmetric(horizontal: 100.w),
+            padding: EdgeInsets.symmetric(horizontal: 50),
             child: const Column(
               children: [
                 // Align(
@@ -46,7 +39,7 @@ class _ProjectPageLargeState extends State<ProjectPageLarge> {
                 //       fontSize: 36,
                 //     ),
                 //     labelColor: kccWhite,
-                //     labelPadding: EdgeInsets.symmetric(horizontal: 25.w),
+                //     labelPadding: EdgeInsets.symmetric(horizontal: 25),
                 //     padding: EdgeInsets.zero,
                 //     dividerColor: kccTransparent,
                 //     unselectedLabelStyle: GoogleFonts.inter(
@@ -84,7 +77,7 @@ class _ProjectPageLargeState extends State<ProjectPageLarge> {
                 //   ),
                 // ),
 
-                ProjectPageContentLarge(
+                ProjectPageContentMedium(
                   projCategory: ProjCategory.all,
                 ),
               ],

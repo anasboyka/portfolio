@@ -16,7 +16,7 @@ class InitTask {
     // init language
     // init fcm utils (permission)
     WidgetsFlutterBinding.ensureInitialized();
-    SystemChrome.setEnabledSystemUIMode(SystemUiMode.edgeToEdge);
+
     // FirebaseOptions firebaseOptions = (Platform.isIOS || Platform.isMacOS)?
     // const FirebaseOptions(apiKey: "AIzaSyD_cQ3apYaVmTYIHg-_mKvxEeJ6BDH-658", appId: "1:1099410234557:ios:426823b918f5c871e1ebd4", messagingSenderId: messagingSenderId, projectId: projectId)
     if (kIsWeb) {
@@ -29,6 +29,7 @@ class InitTask {
             appId: "1:1099410234557:web:ffc02cc02efede5fe1ebd4",
           ));
     } else {
+      SystemChrome.setEnabledSystemUIMode(SystemUiMode.edgeToEdge);
       await Firebase.initializeApp();
     }
     //setupLocator();

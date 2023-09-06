@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
+// import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:portfolio/common/common.dart';
 
@@ -21,17 +21,17 @@ class _ExpertisePageSmallState extends State<ExpertisePageSmall> {
       color: kccOnPrimary,
       child: Column(
         children: [
-          gaph(h: 20.h),
+          gaph(h: 20),
           Text('Expertise',
               style:
                   //textTheme.displayLarge?.copyWith(fontSize: 50.sp),
-                  kcfLHeadlineSmall().copyWith(fontWeight: kcfbold)),
+                  kcfLHeadlineSmall(r: false).copyWith(fontWeight: kcfbold)),
           Text("My skills and knowledge",
               style: kcfSBodyMedium().copyWith(color: kccgrey1)
               // textTheme.bodyMedium?.copyWith(
               //     color: kccgrey1, fontWeight: kcfregular, fontSize: 20.sp),
               ),
-          gaph(h: 16.h),
+          gaph(h: 16),
           AnimatedSwitcher(
             duration: const Duration(milliseconds: 500),
             child: IndexedStack(
@@ -60,7 +60,7 @@ class _ExpertisePageSmallState extends State<ExpertisePageSmall> {
     String content,
   ) {
     return Padding(
-      padding: EdgeInsets.symmetric(horizontal: 20.w),
+      padding: const EdgeInsets.symmetric(horizontal: 20),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -70,18 +70,18 @@ class _ExpertisePageSmallState extends State<ExpertisePageSmall> {
               service == Service.mobileApp
                   ? Text(
                       title,
-                      style:
-                          kcfLTitleMedium().copyWith(fontWeight: kcfsemibold),
+                      style: kcfLTitleMedium(r: false)
+                          .copyWith(fontWeight: kcfsemibold),
                     )
                   : gapw(w: 0),
               service == Service.mobileApp ? const Spacer() : gapw(w: 0),
               IconButton(
-                constraints: BoxConstraints(
-                  maxHeight: 30.w,
-                  maxWidth: 30.w,
+                constraints: const BoxConstraints(
+                  maxHeight: 30,
+                  maxWidth: 30,
                 ),
                 splashRadius: 20,
-                iconSize: 30.w,
+                iconSize: 30,
                 padding: kcaInset0,
                 onPressed: () {
                   if (currentIndex == 0) {
@@ -99,38 +99,55 @@ class _ExpertisePageSmallState extends State<ExpertisePageSmall> {
                       ? CupertinoIcons.chevron_right_circle
                       : CupertinoIcons.chevron_left_circle,
                   color: kccSecondary,
-                  size: 30.w,
+                  size: 30,
                 ),
               ),
               service == Service.iot ? const Spacer() : gapw(w: 0),
               service == Service.iot
                   ? Text(
                       title,
-                      style:
-                          kcfLTitleMedium().copyWith(fontWeight: kcfsemibold),
+                      style: kcfLTitleMedium(r: false)
+                          .copyWith(fontWeight: kcfsemibold),
                     )
                   : gapw(w: 0),
             ],
           ),
-          gaph(h: 16.h),
-          ClipRRect(
-            borderRadius: BorderRadius.circular(8.r),
-            child: Image.asset(
-              image,
-              width: 390.w,
-              fit: BoxFit.cover,
+          gaph(h: 16),
+          SizedBox(
+            width: double.maxFinite,
+            child: AspectRatio(
+              aspectRatio: 16 / 9,
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(8),
+                child: Image.asset(
+                  image,
+                  fit: BoxFit.cover,
+                  width: double.maxFinite,
+                  //width: double.maxFinite,
+                  //height: 562,
+                  //fit: BoxFit.contain,
+                ),
+              ),
             ),
           ),
+          // ClipRRect(
+          //   borderRadius: BorderRadius.circular(8),
+          //   child: Image.asset(
+          //     image,
+          //     width: 390,
+          //     fit: BoxFit.cover,
+          //   ),
+          // ),
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              gaph(h: 14.h),
+              gaph(h: 14),
               Text(
                 content,
                 style: kcfSBodyMedium().copyWith(fontWeight: kcfmedium),
                 // textTheme.bodySmall?.copyWith(fontWeight: kcfregular),
               ),
-              gaph(h: 12.h),
+              gaph(h: 12),
               SizedBox(
                 width: double.infinity,
                 child: CupertinoSegmentedControl<Knowledge>(
@@ -144,11 +161,11 @@ class _ExpertisePageSmallState extends State<ExpertisePageSmall> {
                   padding: EdgeInsets.zero,
                   children: {
                     Knowledge.skills: Padding(
-                      padding: EdgeInsets.symmetric(vertical: 7.h),
+                      padding: const EdgeInsets.symmetric(vertical: 7),
                       child: Text(
                         Knowledge.skills.text,
                         style: GoogleFonts.poppins(
-                          fontSize: 16.sp,
+                          fontSize: 16,
                           color: kccWhite,
                           fontWeight: service == Service.mobileApp
                               ? knowledgeMobile == Knowledge.skills
@@ -170,12 +187,12 @@ class _ExpertisePageSmallState extends State<ExpertisePageSmall> {
                       ),
                     ),
                     Knowledge.softwareUsed: Padding(
-                      padding: EdgeInsets.symmetric(vertical: 7.h),
+                      padding: const EdgeInsets.symmetric(vertical: 7),
                       child: Text(
                         Knowledge.softwareUsed.text,
                         style: GoogleFonts.poppins(
                           color: kccWhite,
-                          fontSize: 16.sp,
+                          fontSize: 16,
                           fontWeight: service == Service.mobileApp
                               ? knowledgeMobile == Knowledge.softwareUsed
                                   ? kcfbold
@@ -207,12 +224,12 @@ class _ExpertisePageSmallState extends State<ExpertisePageSmall> {
                   },
                 ),
               ),
-              gaph(h: 22.h),
+              gaph(h: 22),
               Wrap(
                 alignment: WrapAlignment.start,
                 runAlignment: WrapAlignment.start,
                 spacing: 7,
-                runSpacing: -6,
+                runSpacing: 10,
                 children: (service == Service.mobileApp
                         ? knowledgeMobile == Knowledge.skills
                             ? kcsLChipMobileAppDevSkills
@@ -221,27 +238,39 @@ class _ExpertisePageSmallState extends State<ExpertisePageSmall> {
                             ? kcsLChipIotSkills
                             : kcsLChipIotSoftware)
                     .map(
-                      (e) => Chip(
-                        backgroundColor: kccSecondary,
-                        label: Text(
+                      (e) => Container(
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(30),
+                            color: kccSecondary),
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 10, vertical: 4),
+                        child: Text(
                           e,
+                          style: kcfSBodyLarge(),
                         ),
-                        labelStyle: kcfSBodyLarge(),
-                        // textTheme.bodyLarge?.copyWith(
-                        //   fontWeight: kcfregular,
-                        //   fontSize: 24.sp,
-                        // ),
-                        labelPadding: EdgeInsets.zero,
-                        padding: EdgeInsets.symmetric(
-                            horizontal: 10.w, vertical: 4.h),
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(30)),
                       ),
+                      // Chip(
+                      //   backgroundColor: kccSecondary,
+                      //   label: Text(
+                      //     e,
+                      //   ),
+                      //   labelStyle: kcfSBodyLarge(),
+                      //   // textTheme.bodyLarge?.copyWith(
+                      //   //   fontWeight: kcfregular,
+                      //   //   fontSize: 24.sp,
+                      //   // ),
+                      //   labelPadding: EdgeInsets.zero,
+                      //   padding: const EdgeInsets.symmetric(
+                      //       horizontal: 10, vertical: 4),
+                      //   shape: RoundedRectangleBorder(
+                      //       borderRadius: BorderRadius.circular(30)),
+                      // ),
                     )
                     .toList(),
               ),
             ],
           ),
+          gaph(h: 20)
         ],
       ),
     );

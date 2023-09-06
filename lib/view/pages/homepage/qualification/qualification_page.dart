@@ -17,8 +17,12 @@ class _QualificationPageState extends State<QualificationPage> {
   Widget build(BuildContext context) {
     // final textTheme = Theme.of(context).textTheme;
     return AdaptiveLayout(
+        mediumOrSmallMinWidth: 650,
         bodySmall: (context, constraint, screenSize) =>
             const QualificationSmall(),
+        bodyMedium: (context, constraint, screenSize) {
+          return const QualificationLarge();
+        },
         bodyLarge: (context, constraint, layout) {
           return const QualificationLarge();
           // return Container(

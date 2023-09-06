@@ -1,7 +1,7 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
+// import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:portfolio/common/common.dart';
 import 'package:portfolio/data/models/project_data.dart';
 import 'package:portfolio/view/widgets/custom/expanded_text.dart';
@@ -9,9 +9,14 @@ import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class ProjectCardSmall extends StatefulWidget {
-  const ProjectCardSmall({super.key, this.project, this.autoPlay = false});
+  const ProjectCardSmall(
+      {super.key,
+      this.project,
+      this.autoPlay = false,
+      required this.constraint});
   final ProjectData? project;
   final bool autoPlay;
+  final BoxConstraints constraint;
 
   @override
   State<ProjectCardSmall> createState() => _ProjectCardSmallState();
@@ -33,11 +38,13 @@ class _ProjectCardSmallState extends State<ProjectCardSmall> {
 
   @override
   Widget build(BuildContext context) {
+    print("project all constraint ${widget.constraint.maxWidth}");
     return Container(
-      constraints: BoxConstraints(maxHeight: 330.h),
-      //height: readMore ? null : 480.w,
+      constraints: BoxConstraints(
+          maxHeight: widget.constraint.maxWidth > 480 ? 480 : 330),
+      //height: readMore ? null : 480,
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(12.r),
+        borderRadius: BorderRadius.circular(12),
         color: kccOnPrimary,
       ),
       child: Column(
@@ -48,38 +55,39 @@ class _ProjectCardSmallState extends State<ProjectCardSmall> {
               topRight: Radius.circular(12),
             ),
             child: SizedBox(
-              height: 178.h,
+              height: widget.constraint.maxWidth > 480 ? 270 : 178,
               width: double.maxFinite,
               child: Stack(
                 alignment: Alignment.center,
                 children: [
-                  CarouselSlider(
-                    items: widget.project!.imageUrl
-                        .map(
-                          (e) => Image.network(
-                            e,
-                            width: double.infinity,
-                            fit: BoxFit.cover,
-                          ),
-                        )
-                        .toList(),
-                    carouselController: carouselController,
-                    options: CarouselOptions(
-                      height: 178.h,
-                      viewportFraction: 1,
-                      autoPlay: autoPlay,
-                      autoPlayInterval: Duration(seconds: autoplayDuration),
-                      onPageChanged: (index, reason) {
-                        setState(() {
-                          activeImage = index;
-                        });
-                        print(autoplayDuration);
-                      },
+                  Positioned.fill(
+                    child: CarouselSlider(
+                      items: widget.project!.imageUrl
+                          .map(
+                            (e) => Image.network(
+                              e,
+                              width: double.infinity,
+                              fit: BoxFit.cover,
+                            ),
+                          )
+                          .toList(),
+                      carouselController: carouselController,
+                      options: CarouselOptions(
+                        viewportFraction: 1,
+                        autoPlay: autoPlay,
+                        autoPlayInterval: Duration(seconds: autoplayDuration),
+                        onPageChanged: (index, reason) {
+                          setState(() {
+                            activeImage = index;
+                          });
+                          // print(autoplayDuration);
+                        },
+                      ),
                     ),
                   ),
                   widget.project!.imageUrl.length != 1
                       ? Positioned(
-                          bottom: 10.h,
+                          bottom: 10,
                           child: AnimatedSmoothIndicator(
                             onDotClicked: (index) {
                               carouselController.animateToPage(index);
@@ -87,9 +95,9 @@ class _ProjectCardSmallState extends State<ProjectCardSmall> {
                             activeIndex: activeImage,
                             //controller: imagePageController,
                             count: widget.project!.imageUrl.length,
-                            effect: WormEffect(
-                              dotWidth: 12.w,
-                              dotHeight: 12.w,
+                            effect: const WormEffect(
+                              dotWidth: 12,
+                              dotHeight: 12,
                               activeDotColor: kccSecondary,
                               dotColor: kccSecondary,
                               strokeWidth: 1,
@@ -107,10 +115,10 @@ class _ProjectCardSmallState extends State<ProjectCardSmall> {
                               IconButton(
                                 padding: kcaInset0,
                                 constraints: BoxConstraints(
-                                  maxHeight: 48.w,
-                                  maxWidth: 48.w,
+                                  maxHeight: 48,
+                                  maxWidth: 48,
                                 ),
-                                iconSize: 48.w,
+                                iconSize: 48,
                                 hoverColor: kccgrey4.withOpacity(0.2),
                                 onPressed: activeImage == 0
                                     ? null
@@ -130,17 +138,17 @@ class _ProjectCardSmallState extends State<ProjectCardSmall> {
                                       },
                                 icon: Icon(
                                   Icons.chevron_left,
-                                  size: 48.w,
+                                  size: 48,
                                   color: kccgrey1.withOpacity(0.6),
                                 ),
                               ),
                               IconButton(
                                 padding: kcaInset0,
                                 constraints: BoxConstraints(
-                                  maxHeight: 48.w,
-                                  maxWidth: 48.w,
+                                  maxHeight: 48,
+                                  maxWidth: 48,
                                 ),
-                                iconSize: 48.w,
+                                iconSize: 48,
                                 highlightColor: kccgrey4.withOpacity(0.3),
                                 hoverColor: kccgrey5.withOpacity(0.2),
                                 onPressed: activeImage ==
@@ -180,8 +188,8 @@ class _ProjectCardSmallState extends State<ProjectCardSmall> {
             child: LayoutBuilder(builder: (context, contentConstraint) {
               TextStyle chipTextStyle = kcfSBodySmall();
 
-              double contentHorizontalPadding = 6.w;
-              double horizontalSpacing = 6.w,
+              double contentHorizontalPadding = 6;
+              double horizontalSpacing = 6,
                   verticalSpacing = 4,
                   verticalPadding = 2,
                   horizontalPadding = 6;
@@ -218,7 +226,7 @@ class _ProjectCardSmallState extends State<ProjectCardSmall> {
               // print('single line height = $singleLineHeight');
               // print('totalheight = $totalLineHeight');
 
-              int maxLines = 5;
+              int maxLines = widget.constraint.maxWidth > 480 ? 5 : 4;
               final descSpan = TextSpan(
                 text: widget.project!.description,
                 style: kcfSBodySmall(),
@@ -236,16 +244,21 @@ class _ProjectCardSmallState extends State<ProjectCardSmall> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    gaph(h: 7.h),
+                    gaph(h: 7),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Expanded(
-                          child: Text(widget.project!.title,
-                              style: kcfSBodyMedium().copyWith(
-                                fontWeight: kcfbold,
-                              )),
+                          child: Text(
+                            widget.project!.title,
+                            style: widget.constraint.maxWidth > 480
+                                ? kcfLTitleMedium(r: false)
+                                    .copyWith(fontWeight: kcfsemibold)
+                                : kcfSBodyMedium().copyWith(
+                                    fontWeight: kcfbold,
+                                  ),
+                          ),
                         ),
                         activeDescription == 0
                             ? InkWell(
@@ -264,13 +277,17 @@ class _ProjectCardSmallState extends State<ProjectCardSmall> {
                                   children: [
                                     Text(
                                       'Tech Used',
-                                      style: kcfSBodySmall().copyWith(
-                                          color: kccSecondary,
-                                          fontWeight: kcfbold),
+                                      style: widget.constraint.maxWidth > 480
+                                          ? kcfSBodyLarge().copyWith(
+                                              color: kccSecondary,
+                                              fontWeight: kcfbold)
+                                          : kcfSBodySmall().copyWith(
+                                              color: kccSecondary,
+                                              fontWeight: kcfbold),
                                     ),
                                     Icon(
                                       Icons.chevron_right,
-                                      size: 24.w,
+                                      size: 24,
                                       color: kccSecondary,
                                     ),
                                   ],
@@ -279,7 +296,7 @@ class _ProjectCardSmallState extends State<ProjectCardSmall> {
                             : gaph(h: 0)
                       ],
                     ),
-                    gaph(h: 4.h),
+                    gaph(h: 4),
                     Expanded(
                       child: PageView(
                         physics: const NeverScrollableScrollPhysics(),
@@ -294,11 +311,11 @@ class _ProjectCardSmallState extends State<ProjectCardSmall> {
                                 color: kccTransparent,
                                 child: IconButton(
                                   constraints: BoxConstraints(
-                                      maxWidth: 32.w, maxHeight: 32.w),
+                                      maxWidth: 32, maxHeight: 32),
                                   padding: EdgeInsets.symmetric(
-                                      horizontal: 4.w, vertical: 4.w),
-                                  splashRadius: 12.w,
-                                  iconSize: 24.w,
+                                      horizontal: 4, vertical: 4),
+                                  splashRadius: 12,
+                                  iconSize: 24,
                                   onPressed: () {
                                     setState(() {
                                       activeDescription = 0;
@@ -311,7 +328,7 @@ class _ProjectCardSmallState extends State<ProjectCardSmall> {
                                   },
                                   icon: Icon(
                                     CupertinoIcons.chevron_left_circle,
-                                    size: 24.w,
+                                    size: 24,
                                     color: kccSecondary,
                                   ),
                                 ),
@@ -326,21 +343,21 @@ class _ProjectCardSmallState extends State<ProjectCardSmall> {
                         ],
                       ),
                     ),
-                    gaph(h: 2.h),
+                    gaph(h: 2),
                     Container(
                       height: 1,
                       color: kccgrey3,
                     ),
-                    gaph(h: 4.h),
+                    gaph(h: 4),
                     Row(
                       mainAxisSize: MainAxisSize.min,
                       children: [
                         widget.project!.projectLink != null
                             ? SizedBox(
-                                height: 24.h,
+                                height: 24,
                                 child: MaterialButton(
                                   shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(4.r),
+                                    borderRadius: BorderRadius.circular(4),
                                     // side: BorderSide(color: kccSecondary),
                                   ),
                                   color: kccSecondary,
@@ -360,7 +377,7 @@ class _ProjectCardSmallState extends State<ProjectCardSmall> {
                                 ),
                               )
                             : gapw(w: 0),
-                        gapw(w: widget.project!.projectLink != null ? 18.w : 0),
+                        gapw(w: widget.project!.projectLink != null ? 18 : 0),
                         widget.project!.playStoreLink != null
                             ? InkWell(
                                 onTap: () async {
@@ -372,14 +389,11 @@ class _ProjectCardSmallState extends State<ProjectCardSmall> {
                                 },
                                 child: Image.asset(
                                   "assets/icon/4x/ic_google_play_4x.png",
-                                  height: 24.h,
+                                  height: 24,
                                 ),
                               )
                             : gapw(w: 0),
-                        gapw(
-                            w: widget.project!.playStoreLink != null
-                                ? 18.w
-                                : 0),
+                        gapw(w: widget.project!.playStoreLink != null ? 18 : 0),
                         widget.project!.appStoreLink != null
                             ? InkWell(
                                 onTap: () async {
@@ -391,18 +405,17 @@ class _ProjectCardSmallState extends State<ProjectCardSmall> {
                                 },
                                 child: Image.asset(
                                   "assets/icon/4x/ic_app_store_4x.png",
-                                  height: 24.h,
+                                  height: 24,
                                 ),
                               )
                             : gapw(w: 0),
-                        gapw(
-                            w: widget.project!.appStoreLink != null ? 18.w : 0),
+                        gapw(w: widget.project!.appStoreLink != null ? 18 : 0),
                         widget.project!.projectDemo != null
                             ? SizedBox(
-                                height: 24.h,
+                                height: 24,
                                 child: MaterialButton(
                                   shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(4.r),
+                                    borderRadius: BorderRadius.circular(4),
                                     // side: BorderSide(color: kccSecondary),
                                   ),
                                   color: kccSecondary,
@@ -424,7 +437,7 @@ class _ProjectCardSmallState extends State<ProjectCardSmall> {
                             : gapw(w: 0),
                       ],
                     ),
-                    gaph(h: 10.h)
+                    gaph(h: 10)
                   ],
                 ),
               );
@@ -470,7 +483,9 @@ class _ProjectCardSmallState extends State<ProjectCardSmall> {
       trimExpandedText: "Show less",
       // trimMode: TrimMode.Line,
       widget.project!.description,
-      style: kcfSBodySmall(),
+      style: widget.constraint.maxWidth > 480
+          ? kcfSBodyMedium().copyWith(fontWeight: kcfmedium)
+          : kcfSBodySmall(),
     );
   }
 
@@ -482,12 +497,16 @@ class _ProjectCardSmallState extends State<ProjectCardSmall> {
         mainAxisAlignment:
             readMore ? MainAxisAlignment.start : MainAxisAlignment.spaceBetween,
         children: [
-          gaph(h: 7.h),
-          Text(widget.project!.title,
-              style: kcfSBodyMedium().copyWith(
-                fontWeight: kcfbold,
-              )),
-          gaph(h: 4.h),
+          gaph(h: 7),
+          Text(
+            widget.project!.title,
+            style: widget.constraint.maxWidth > 480
+                ? kcfLTitleMedium(r: false).copyWith(fontWeight: kcfsemibold)
+                : kcfSBodyLarge().copyWith(
+                    fontWeight: kcfbold,
+                  ),
+          ),
+          gaph(h: 4),
           RepaintBoundary(
             child: ExpandedText(
               onTapLink: () {
@@ -515,16 +534,16 @@ class _ProjectCardSmallState extends State<ProjectCardSmall> {
 
           //wrap,
 
-          gaph(h: 7.h),
+          gaph(h: 7),
           Row(
             mainAxisSize: MainAxisSize.min,
             children: [
               widget.project!.projectLink != null
                   ? SizedBox(
-                      height: 24.h,
+                      height: 24,
                       child: MaterialButton(
                         shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(4.r),
+                          borderRadius: BorderRadius.circular(4),
                           // side: BorderSide(color: kccSecondary),
                         ),
                         color: kccSecondary,
@@ -544,33 +563,33 @@ class _ProjectCardSmallState extends State<ProjectCardSmall> {
                       ),
                     )
                   : gapw(w: 0),
-              gapw(w: widget.project!.projectLink != null ? 18.w : 0),
+              gapw(w: widget.project!.projectLink != null ? 18 : 0),
               widget.project!.playStoreLink != null
                   ? InkWell(
                       onTap: () {},
                       child: Image.asset(
                         "assets/icon/4x/ic_google_play_4x.png",
-                        height: 24.h,
+                        height: 24,
                       ),
                     )
                   : gapw(w: 0),
-              gapw(w: widget.project!.playStoreLink != null ? 18.w : 0),
+              gapw(w: widget.project!.playStoreLink != null ? 18 : 0),
               widget.project!.playStoreLink != null
                   ? InkWell(
                       onTap: () {},
                       child: Image.asset(
                         "assets/icon/4x/ic_app_store_4x.png",
-                        height: 24.h,
+                        height: 24,
                       ),
                     )
                   : gapw(w: 0),
-              gapw(w: widget.project!.appStoreLink != null ? 18.w : 0),
+              gapw(w: widget.project!.appStoreLink != null ? 18 : 0),
               widget.project!.projectDemo != null
                   ? SizedBox(
-                      height: 24.h,
+                      height: 24,
                       child: MaterialButton(
                         shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(4.r),
+                          borderRadius: BorderRadius.circular(4),
                           // side: BorderSide(color: kccSecondary),
                         ),
                         color: kccSecondary,
