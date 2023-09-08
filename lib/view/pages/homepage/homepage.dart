@@ -217,7 +217,6 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
   }
 
   AppBar appbarNavigation(BuildContext context, Layout layout) {
-  
     return AppBar(
       elevation: 0,
       shadowColor: kccTransparent,
@@ -395,6 +394,19 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
         ),
       ),
     ];
+  }
+
+  double? getSizeDrawer(Layout layout) {
+    switch (layout) {
+      case Layout.small:
+        return null;
+      case Layout.medium:
+        return 300;
+      case Layout.large:
+        return 450.w;
+      default:
+        return null;
+    }
   }
 
   void _scrollToItem(double height) {

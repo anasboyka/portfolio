@@ -323,78 +323,86 @@ class _AboutPageSmallState extends State<AboutPageSmall> {
   }
 
   List<Widget> get sizeReportingChildren => [
-        Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 14),
-          child: ExpandedText(
-            key: UniqueKey(),
-            kcsBioContent,
-            trimLines: maxMultiline,
-            isExpanded: readMore[currentPageIndex],
-            onTapLink: () {
-              setState(() {
-                readMore[currentPageIndex] = !readMore[currentPageIndex];
-              });
-            },
-            linkColor: kccSecondary,
-            style: contentStyle,
+        SingleChildScrollView(
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 14),
+            child: ExpandedText(
+              key: UniqueKey(),
+              kcsBioContent,
+              trimLines: maxMultiline,
+              isExpanded: readMore[currentPageIndex],
+              onTapLink: () {
+                setState(() {
+                  readMore[currentPageIndex] = !readMore[currentPageIndex];
+                });
+              },
+              linkColor: kccSecondary,
+              style: contentStyle,
+            ),
           ),
         ),
-        Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 14),
-          child: ExpandedText(
-            key: UniqueKey(),
-            kcsWhatDoIDoContent,
-            trimLines: maxMultiline,
-            isExpanded: readMore[currentPageIndex],
-            onTapLink: () {
-              setState(() {
-                readMore[currentPageIndex] = !readMore[currentPageIndex];
-              });
-            },
-            linkColor: kccSecondary,
-            style: contentStyle,
+        SingleChildScrollView(
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 14),
+            child: ExpandedText(
+              key: UniqueKey(),
+              kcsWhatDoIDoContent,
+              trimLines: maxMultiline,
+              isExpanded: readMore[currentPageIndex],
+              onTapLink: () {
+                setState(() {
+                  readMore[currentPageIndex] = !readMore[currentPageIndex];
+                });
+              },
+              linkColor: kccSecondary,
+              style: contentStyle,
+            ),
           ),
         ),
-        Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 14),
-          child: ExpandedText(
-            key: UniqueKey(),
-            kcsPreferedLocationContent,
-            trimLines: maxMultiline,
-            isExpanded: readMore[currentPageIndex],
-            onTapLink: () {
-              setState(() {
-                readMore[currentPageIndex] = !readMore[currentPageIndex];
-              });
-            },
-            linkColor: kccSecondary,
-            style: contentStyle,
+        SingleChildScrollView(
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 14),
+            child: ExpandedText(
+              key: UniqueKey(),
+              kcsPreferedLocationContent,
+              trimLines: maxMultiline,
+              isExpanded: readMore[currentPageIndex],
+              onTapLink: () {
+                setState(() {
+                  readMore[currentPageIndex] = !readMore[currentPageIndex];
+                });
+              },
+              linkColor: kccSecondary,
+              style: contentStyle,
+            ),
           ),
         ),
-        Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 14),
-          child: Row(
-            children: [
-              Expanded(
-                child: Column(
-                  children: [
-                    skillBar('Dart', 0.96),
-                    skillBar('Java', 0.94),
-                    skillBar('Python', 0.92),
-                  ],
+        SingleChildScrollView(
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 14),
+            child: Row(
+              children: [
+                Expanded(
+                  child: Column(
+                    children: [
+                      skillBar('Dart', 0.96),
+                      skillBar('Java', 0.94),
+                      skillBar('Python', 0.92),
+                    ],
+                  ),
                 ),
-              ),
-              gapwr(),
-              Expanded(
-                child: Column(
-                  children: [
-                    skillBar('C/C++', 0.91),
-                    skillBar('HTML', 0.92),
-                    skillBar('CSS', 0.91),
-                  ],
+                gapwr(),
+                Expanded(
+                  child: Column(
+                    children: [
+                      skillBar('C/C++', 0.91),
+                      skillBar('HTML', 0.92),
+                      skillBar('CSS', 0.91),
+                    ],
+                  ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         )
       ];
