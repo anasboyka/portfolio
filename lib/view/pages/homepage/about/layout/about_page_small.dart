@@ -28,6 +28,7 @@ class _AboutPageSmallState extends State<AboutPageSmall> {
   double extraHeight = 0;
   int currentPageIndex = 0;
   double scale = 0;
+  var controller = ScrollController();
 
   @override
   Widget build(BuildContext context) {
@@ -216,20 +217,31 @@ class _AboutPageSmallState extends State<AboutPageSmall> {
                   height:
                       calculateSingleLineHeight(contentStyle) * maxMultiline +
                           20,
-                  child: AnimatedSwitcher(
-                    duration: const Duration(milliseconds: 500),
-                    child: IndexedStack(
-                        key: ValueKey<int>(currentPageIndex),
-                        index: currentPageIndex,
-                        // pageSnapping: false,
-                        // controller: pageController,
-                        // physics: const NeverScrollableScrollPhysics(),
-                        children: sizeReportingChildren
-                        // .asMap() //
-                        // .map((index, child) => MapEntry(index, child))
-                        // .values
-                        // .toList(),
-                        ),
+                  child: Scrollbar(
+                    controller: controller,
+                    thumbVisibility: true,
+                    interactive: true,
+                    // radius: Radius.circular(10),
+                    // thickness: 20,
+                    // trackVisibility: true,
+                    child: SingleChildScrollView(
+                      controller: controller,
+                      child: AnimatedSwitcher(
+                        duration: const Duration(milliseconds: 500),
+                        child: IndexedStack(
+                            key: ValueKey<int>(currentPageIndex),
+                            index: currentPageIndex,
+                            // pageSnapping: false,
+                            // controller: pageController,
+                            // physics: const NeverScrollableScrollPhysics(),
+                            children: sizeReportingChildren
+                            // .asMap() //
+                            // .map((index, child) => MapEntry(index, child))
+                            // .values
+                            // .toList(),
+                            ),
+                      ),
+                    ),
                   ),
                 ),
                 gaphr(),
@@ -323,87 +335,91 @@ class _AboutPageSmallState extends State<AboutPageSmall> {
   }
 
   List<Widget> get sizeReportingChildren => [
-        SingleChildScrollView(
-          child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 14),
-            child: ExpandedText(
-              key: UniqueKey(),
-              kcsBioContent,
-              trimLines: maxMultiline,
-              isExpanded: readMore[currentPageIndex],
-              onTapLink: () {
-                setState(() {
-                  readMore[currentPageIndex] = !readMore[currentPageIndex];
-                });
-              },
-              linkColor: kccSecondary,
-              style: contentStyle,
-            ),
+        // SingleChildScrollView(
+        // child:
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 14),
+          child: ExpandedText(
+            key: UniqueKey(),
+            kcsBioContent,
+            trimLines: maxMultiline,
+            isExpanded: readMore[currentPageIndex],
+            onTapLink: () {
+              setState(() {
+                readMore[currentPageIndex] = !readMore[currentPageIndex];
+              });
+            },
+            linkColor: kccSecondary,
+            style: contentStyle,
           ),
         ),
-        SingleChildScrollView(
-          child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 14),
-            child: ExpandedText(
-              key: UniqueKey(),
-              kcsWhatDoIDoContent,
-              trimLines: maxMultiline,
-              isExpanded: readMore[currentPageIndex],
-              onTapLink: () {
-                setState(() {
-                  readMore[currentPageIndex] = !readMore[currentPageIndex];
-                });
-              },
-              linkColor: kccSecondary,
-              style: contentStyle,
-            ),
+        // ),
+        // SingleChildScrollView(
+        //   child:
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 14),
+          child: ExpandedText(
+            key: UniqueKey(),
+            kcsWhatDoIDoContent,
+            trimLines: maxMultiline,
+            isExpanded: readMore[currentPageIndex],
+            onTapLink: () {
+              setState(() {
+                readMore[currentPageIndex] = !readMore[currentPageIndex];
+              });
+            },
+            linkColor: kccSecondary,
+            style: contentStyle,
           ),
         ),
-        SingleChildScrollView(
-          child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 14),
-            child: ExpandedText(
-              key: UniqueKey(),
-              kcsPreferedLocationContent,
-              trimLines: maxMultiline,
-              isExpanded: readMore[currentPageIndex],
-              onTapLink: () {
-                setState(() {
-                  readMore[currentPageIndex] = !readMore[currentPageIndex];
-                });
-              },
-              linkColor: kccSecondary,
-              style: contentStyle,
-            ),
+        // ),
+        // SingleChildScrollView(
+        //   child:
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 14),
+          child: ExpandedText(
+            key: UniqueKey(),
+            kcsPreferedLocationContent,
+            trimLines: maxMultiline,
+            isExpanded: readMore[currentPageIndex],
+            onTapLink: () {
+              setState(() {
+                readMore[currentPageIndex] = !readMore[currentPageIndex];
+              });
+            },
+            linkColor: kccSecondary,
+            style: contentStyle,
           ),
         ),
-        SingleChildScrollView(
-          child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 14),
-            child: Row(
-              children: [
-                Expanded(
-                  child: Column(
-                    children: [
-                      skillBar('Dart', 0.96),
-                      skillBar('Java', 0.94),
-                      skillBar('Python', 0.92),
-                    ],
-                  ),
+        // ),
+        // SingleChildScrollView(
+        //   child:
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 14),
+          child: Row(
+            children: [
+              Expanded(
+                child: Column(
+                  children: [
+                    skillBar('Dart', 0.96),
+                    skillBar('Java', 0.94),
+                    skillBar('Python', 0.92),
+                  ],
                 ),
-                gapwr(),
-                Expanded(
-                  child: Column(
-                    children: [
-                      skillBar('C/C++', 0.91),
-                      skillBar('HTML', 0.92),
-                      skillBar('CSS', 0.91),
-                    ],
-                  ),
+              ),
+              gapwr(),
+              Expanded(
+                child: Column(
+                  children: [
+                    skillBar('C/C++', 0.91),
+                    skillBar('HTML', 0.92),
+                    skillBar('CSS', 0.91),
+                  ],
                 ),
-              ],
-            ),
+              ),
+            ],
           ),
-        )
+        ),
+        // )
       ];
 }
