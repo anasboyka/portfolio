@@ -217,30 +217,22 @@ class _AboutPageSmallState extends State<AboutPageSmall> {
                   height:
                       calculateSingleLineHeight(contentStyle) * maxMultiline +
                           20,
-                  child: Scrollbar(
+                  child: SingleChildScrollView(
                     controller: controller,
-                    thumbVisibility: true,
-                    interactive: true,
-                    // radius: Radius.circular(10),
-                    // thickness: 20,
-                    // trackVisibility: true,
-                    child: SingleChildScrollView(
-                      controller: controller,
-                      child: AnimatedSwitcher(
-                        duration: const Duration(milliseconds: 500),
-                        child: IndexedStack(
-                            key: ValueKey<int>(currentPageIndex),
-                            index: currentPageIndex,
-                            // pageSnapping: false,
-                            // controller: pageController,
-                            // physics: const NeverScrollableScrollPhysics(),
-                            children: sizeReportingChildren
-                            // .asMap() //
-                            // .map((index, child) => MapEntry(index, child))
-                            // .values
-                            // .toList(),
-                            ),
-                      ),
+                    child: AnimatedSwitcher(
+                      duration: const Duration(milliseconds: 500),
+                      child: IndexedStack(
+                          key: ValueKey<int>(currentPageIndex),
+                          index: currentPageIndex,
+                          // pageSnapping: false,
+                          // controller: pageController,
+                          // physics: const NeverScrollableScrollPhysics(),
+                          children: sizeReportingChildren
+                          // .asMap() //
+                          // .map((index, child) => MapEntry(index, child))
+                          // .values
+                          // .toList(),
+                          ),
                     ),
                   ),
                 ),
