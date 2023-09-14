@@ -109,6 +109,7 @@ class _SocialLinkState extends State<SocialLink> {
                     GoogleFonts.inter(
                       fontWeight: kcfregular,
                       fontSize: 30.sp,
+                      color: kccWhite,
                     ),
               ),
             ],

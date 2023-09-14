@@ -15,7 +15,6 @@ class QualificationPage extends StatefulWidget {
 class _QualificationPageState extends State<QualificationPage> {
   @override
   Widget build(BuildContext context) {
-    // final textTheme = Theme.of(context).textTheme;
     return AdaptiveLayout(
         mediumOrSmallMinWidth: 650,
         bodySmall: (context, constraint, screenSize) =>
@@ -25,52 +24,6 @@ class _QualificationPageState extends State<QualificationPage> {
         },
         bodyLarge: (context, constraint, layout) {
           return const QualificationLarge();
-          // return Container(
-          //   width: double.maxFinite,
-          //   color: kccSecondary,
-          //   child: Column(
-          //     children: [
-          //       gaph(h: 20.h),
-          //       Text(
-          //         'Qualification',
-          //         style: textTheme.displayLarge?.copyWith(fontSize: 50.sp),
-          //       ),
-          //       Text(
-          //         "My Education & experience",
-          //         style: textTheme.bodyMedium?.copyWith(
-          //             color: kccWhite, fontWeight: kcfregular, fontSize: 20.sp),
-          //       ),
-          //       gaph(h: 17.h),
-          //       Padding(
-          //         padding: EdgeInsets.fromLTRB(100.w, 0, 100.w, 0),
-          //         child: Container(
-          //           color: kccWhite3,
-          //           padding: EdgeInsets.only(bottom: 104.w),
-          //           width: double.maxFinite,
-          //           child: IntrinsicHeight(
-          //             child: Row(
-          //               children: [
-          //                 const Spacer(),
-          //                 educationDesign(textTheme),
-          //                 const Spacer(),
-          //                 Padding(
-          //                     padding: EdgeInsets.only(top: 104.w),
-          //                     child: Container(
-          //                       width: 8,
-          //                       color: kccSecondary,
-          //                     )),
-          //                 const Spacer(),
-          //                 experienceDesign(textTheme),
-          //                 const Spacer(),
-          //               ],
-          //             ),
-          //           ),
-          //         ),
-          //       ),
-          //       gaph(h: 128.h)
-          //     ],
-          //   ),
-          // );
         });
   }
 

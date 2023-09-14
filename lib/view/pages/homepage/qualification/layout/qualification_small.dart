@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-// import 'package:flutter_screenutil/flutter_screenutil.dart';
+
 import 'package:portfolio/common/common.dart';
 import 'package:timeline_tile/timeline_tile.dart';
 
@@ -23,12 +23,12 @@ class _QualificationSmallState extends State<QualificationSmall> {
           gaph(h: 20),
           Text('Qualification',
               style:
-                  //textTheme.displayLarge?.copyWith(fontSize: 50.sp),
+                  
                   kcfLHeadlineSmall(r: false).copyWith(fontWeight: kcfbold)),
           Text("My education & experience",
               style: kcfSBodyMedium().copyWith(color: kccWhite)
-              // textTheme.bodyMedium?.copyWith(
-              //     color: kccgrey1, fontWeight: kcfregular, fontSize: 20.sp),
+              
+              
               ),
           gaph(h: 16),
           DefaultTabController(
@@ -147,24 +147,24 @@ class _QualificationSmallState extends State<QualificationSmall> {
           role,
           style: kcfSBodyLarge()
               .copyWith(color: kccPrimary, fontWeight: kcfsemibold),
-          // textTheme.headlineSmall
-          //     ?.copyWith(color: kccPrimary, fontSize: 28.sp),
+          
+          
         ),
         gaph(h: 4),
         Text(
           company,
           style: kcfSBodyMedium()
               .copyWith(color: kccBlack, fontStyle: FontStyle.italic),
-          // textTheme.bodyMedium?.copyWith(
-          //     color: kccBlack,
-          //     fontStyle: FontStyle.italic,
-          //     fontWeight: kcfregular,
-          //     fontSize: 20.sp),
+          
+          
+          
+          
+          
         ),
         gaph(h: 4),
         Text(duration, style: kcfSBodyMedium().copyWith(color: kccBlack4)
-            // textTheme.bodyMedium?.copyWith(
-            //     color: kccblack4, fontWeight: kcfregular, fontSize: 20.sp),
+            
+            
             ),
       ],
     );
@@ -237,29 +237,29 @@ class _QualificationSmallState extends State<QualificationSmall> {
           education,
           style: kcfSBodyLarge()
               .copyWith(color: kccPrimary, fontWeight: kcfsemibold),
-          // textThemeeadlineSmall
-          //     ?.copyWith(color: kccPrimary, fontSize: 24.sp),
+          
+          
         ),
         gaph(h: 4),
         Text(school,
             style: kcfSBodyMedium()
                 .copyWith(color: kccBlack, fontStyle: FontStyle.italic)
-            // textTheme.bodyMedium?.copyWith(
-            //     color: kccBlack,
-            //     fontStyle: FontStyle.italic,
-            //     fontWeight: kcfregular,
-            //     fontSize: 20.sp),
+            
+            
+            
+            
+            
             ),
         gaph(h: 4),
         Text(duration, style: kcfSBodyMedium().copyWith(color: kccBlack4)
-            // textTheme.bodyMedium?.copyWith(
-            //     color: kccblack4, fontWeight: kcfregular, fontSize: 20.sp),
+            
+            
             ),
         gaph(h: 4),
         Text(result,
             style: kcfSBodyMedium()
                 .copyWith(color: kccBlack, fontWeight: kcfmedium)
-            // textTheme.bodyMedium?.copyWith(color: kccBlack, fontSize: 20.sp),
+            
             ),
       ],
     );

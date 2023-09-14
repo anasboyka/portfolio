@@ -1,7 +1,5 @@
-import 'package:carousel_slider/carousel_controller.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:portfolio/common/common.dart';
 import 'package:portfolio/data/models/project_data.dart';
 import 'package:portfolio/view/widgets/custom/expanded_text.dart';
@@ -19,15 +17,14 @@ class ProjectCardMedium extends StatefulWidget {
 
 class _ProjectCardMediumState extends State<ProjectCardMedium> {
   bool readMore = false, autoPlay = false;
-  // PageController controller = PageController(initialPage: 0);
+
   CarouselController carouselController = CarouselController();
   int autoplayDuration = 4;
 
   int activeImage = 0, activeDescription = 0;
-  // double pictureWidth = 610;
+
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     autoPlay = widget.autoPlay;
   }
@@ -37,8 +34,7 @@ class _ProjectCardMediumState extends State<ProjectCardMedium> {
     return widget.project == null
         ? gaph(h: 300)
         : Container(
-            constraints: BoxConstraints(maxHeight: 300),
-            //height: readMore ? null : 480,
+            constraints: const BoxConstraints(maxHeight: 300),
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(30),
               color: kccOnPrimary,
@@ -70,7 +66,6 @@ class _ProjectCardMediumState extends State<ProjectCardMedium> {
                                 .toList(),
                             carouselController: carouselController,
                             options: CarouselOptions(
-                              //height: 178,
                               viewportFraction: 1,
                               autoPlay: autoPlay,
                               autoPlayInterval:
@@ -83,22 +78,6 @@ class _ProjectCardMediumState extends State<ProjectCardMedium> {
                             ),
                           ),
                         ),
-                        // PageView(
-                        //   onPageChanged: (value) {
-                        //     setState(() {
-                        //       activePage = value;
-                        //     });
-                        //   },
-                        //   controller: controller,
-                        //   children: widget.project!.imageUrl
-                        //       .map(
-                        //         (e) => Image.network(
-                        //           e,
-                        //           fit: BoxFit.cover,
-                        //         ),
-                        //       )
-                        //       .toList(),
-                        // ),
                         widget.project!.imageUrl.length != 1
                             ? Positioned(
                                 bottom: 50,
@@ -110,9 +89,7 @@ class _ProjectCardMediumState extends State<ProjectCardMedium> {
                                       dotColor: kccSecondary,
                                       strokeWidth: 2,
                                       paintStyle: PaintingStyle.stroke,
-                                      type: WormType.normal
-                                      // verticalOffset: 10,
-                                      ),
+                                      type: WormType.normal),
                                 ),
                               )
                             : const SizedBox(),
@@ -187,15 +164,8 @@ class _ProjectCardMediumState extends State<ProjectCardMedium> {
                 ),
                 Expanded(
                   child: LayoutBuilder(builder: (context, constraint) {
-                    // final textTheme = Theme.of(context).textTheme;
-
                     TextStyle chipTextStyle = kcfLBodyLarge();
-                    // textTheme.bodyMedium?.copyWith(
-                    //         fontWeight: kcfregular, fontSize: 20.sp) ??
-                    //     TextStyle(
-                    //         fontSize: 20.sp,
-                    //         color: kccWhite,
-                    //         fontWeight: kcfregular);
+
                     double contentHorizontalPadding = 14;
                     double horizontalSpacing = 7,
                         verticalSpacing = 10,
@@ -214,10 +184,8 @@ class _ProjectCardMediumState extends State<ProjectCardMedium> {
                     List<int> eachLineHaveHowManyItem = [];
 
                     for (var i = 0; i < widget.project!.techUsed.length; i++) {
-                      // for (String chipText in widget.project!.techUsed) {
                       double chipWidth = _calculateChipWidth(
                             widget.project!.techUsed[i],
-                            // chipText,
                             chipTextStyle,
                           ) +
                           horizontalSpacing +
@@ -232,16 +200,10 @@ class _ProjectCardMediumState extends State<ProjectCardMedium> {
                         totalWidth = 0;
                       }
                       totalWidth += chipWidth;
-                      //print(totalLineHeight);
                     }
                     totalLineHeight += singleLineHeight;
 
                     double maxHeightForThreeLines = singleLineHeight * 3;
-
-                    // print(
-                    //     'total line height =  ${totalLineHeight.toStringAsFixed(2)}');
-                    // print(
-                    //     'max height for 3 line = ${maxHeightForThreeLines.toStringAsFixed(2)}');
 
                     Wrap wrap = Wrap(
                       spacing: horizontalSpacing,
@@ -267,16 +229,7 @@ class _ProjectCardMediumState extends State<ProjectCardMedium> {
 
                     bool wrapIsOverflowed =
                         totalLineHeight >= maxHeightForThreeLines;
-                    // print(
-                    //     'wrap constraint width= ${constraint.maxWidth - contentHorizontalPadding * 2}');
-                    // print('whole width = $wholeWidth');
-                    // print('item length = ${widget.project!.techUsed.length}');
-                    // print(widths);
-                    // print(eachLineHaveHowManyItem);
-                    // print(chipWidthList);
-                    // print('wrap is 3 line =  $wrapIsOverflowed');
-                    // print('single line height = $singleLineHeight');
-                    // print('totalheight = $totalLineHeight');
+
                     return SizedBox(
                       height: double.maxFinite,
                       child: readMore || wrapIsOverflowed
@@ -320,47 +273,15 @@ class _ProjectCardMediumState extends State<ProjectCardMedium> {
                 });
               },
               isExpanded: readMore,
-              // callback: onExpand,
-              // (val) {
-              //   print('readmore b4 set = $readMore');
-              //   setState(() {
-              //     readMore = !val;
-              //   });
-              //   print('readmore after set = $readMore');
-              // },
               trimLines: 3,
               trimCollapsedText: "Show more",
               trimExpandedText: "Show less",
-              // trimMode: TrimMode.Line,
               widget.project!.description,
               style: kcfLBodyLarge(),
             ),
           ),
           gaph(h: 14),
-
           wrap,
-          // Wrap(
-          //   spacing: 10,
-          //   runSpacing: 8,
-          //   children: widget.project!.techUsed
-          //       .map(
-          //         (e) => Chip(
-          //           backgroundColor: kccOnPrimary,
-          //           label: Text(
-          //             e,
-          //           ),
-          //           labelStyle:
-          //               textTheme.bodyMedium?.copyWith(fontWeight: kcfregular),
-          //           labelPadding: EdgeInsets.zero,
-          //           padding:
-          //               const EdgeInsets.symmetric(horizontal: 12, vertical: 5),
-          //           shape: RoundedRectangleBorder(
-          //               borderRadius: BorderRadius.circular(30)),
-          //         ),
-          //       )
-          //       .toList(),
-          // ),
-
           gaph(h: 10),
           Row(
             mainAxisSize: MainAxisSize.min,
@@ -372,7 +293,6 @@ class _ProjectCardMediumState extends State<ProjectCardMedium> {
                         padding: kcaInset0,
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(6),
-                          // side: BorderSide(color: kccSecondary),
                         ),
                         color: kccSecondary,
                         onPressed: () async {
@@ -383,12 +303,10 @@ class _ProjectCardMediumState extends State<ProjectCardMedium> {
                           }
                         },
                         child: Padding(
-                          padding: EdgeInsets.symmetric(horizontal: 12),
+                          padding: const EdgeInsets.symmetric(horizontal: 12),
                           child: Text(
                             "View Project",
                             style: kcfLBodyLarge(),
-                            //  textTheme.bodySmall?.copyWith(
-                            //     fontWeight: kcfregular, fontSize: 18.sp),
                           ),
                         ),
                       ),
@@ -434,7 +352,6 @@ class _ProjectCardMediumState extends State<ProjectCardMedium> {
                         padding: kcaInset0,
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(6),
-                          // side: BorderSide(color: kccSecondary),
                         ),
                         color: kccSecondary,
                         onPressed: () async {
@@ -445,12 +362,10 @@ class _ProjectCardMediumState extends State<ProjectCardMedium> {
                           }
                         },
                         child: Padding(
-                          padding: EdgeInsets.symmetric(horizontal: 12),
+                          padding: const EdgeInsets.symmetric(horizontal: 12),
                           child: Text(
                             "Project Video",
                             style: kcfLBodyLarge(),
-                            // textTheme.bodySmall?.copyWith(
-                            //     fontWeight: kcfregular, fontSize: 18.sp),
                           ),
                         ),
                       ),
@@ -465,7 +380,6 @@ class _ProjectCardMediumState extends State<ProjectCardMedium> {
   }
 
   double _calculateSingleLineHeight(TextStyle textStyle) {
-    // Calculate the height of a single line of text using the TextStyle
     final textPainter = TextPainter(
       text: TextSpan(text: 'A', style: textStyle),
       textDirection: TextDirection.ltr,
@@ -475,12 +389,11 @@ class _ProjectCardMediumState extends State<ProjectCardMedium> {
   }
 
   double _calculateChipWidth(String text, TextStyle textStyle) {
-    // Calculate the width of a chip based on the text it contains and the TextStyle
     final textPainter = TextPainter(
       text: TextSpan(text: text, style: textStyle),
       textDirection: TextDirection.ltr,
     );
     textPainter.layout();
-    return textPainter.width; // Adding padding
+    return textPainter.width;
   }
 }

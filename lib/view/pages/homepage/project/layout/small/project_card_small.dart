@@ -1,7 +1,7 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-// import 'package:flutter_screenutil/flutter_screenutil.dart';
+
 import 'package:portfolio/common/common.dart';
 import 'package:portfolio/data/models/project_data.dart';
 import 'package:portfolio/view/widgets/custom/expanded_text.dart';
@@ -32,7 +32,7 @@ class _ProjectCardSmallState extends State<ProjectCardSmall> {
   @override
   void initState() {
     autoPlay = widget.autoPlay;
-    // TODO: implement initState
+
     super.initState();
   }
 
@@ -42,7 +42,6 @@ class _ProjectCardSmallState extends State<ProjectCardSmall> {
     return Container(
       constraints: BoxConstraints(
           maxHeight: widget.constraint.maxWidth > 480 ? 480 : 330),
-      //height: readMore ? null : 480,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(12),
         color: kccOnPrimary,
@@ -80,7 +79,6 @@ class _ProjectCardSmallState extends State<ProjectCardSmall> {
                           setState(() {
                             activeImage = index;
                           });
-                          // print(autoplayDuration);
                         },
                       ),
                     ),
@@ -93,7 +91,6 @@ class _ProjectCardSmallState extends State<ProjectCardSmall> {
                               carouselController.animateToPage(index);
                             },
                             activeIndex: activeImage,
-                            //controller: imagePageController,
                             count: widget.project!.imageUrl.length,
                             effect: const WormEffect(
                               dotWidth: 12,
@@ -114,7 +111,7 @@ class _ProjectCardSmallState extends State<ProjectCardSmall> {
                             children: [
                               IconButton(
                                 padding: kcaInset0,
-                                constraints: BoxConstraints(
+                                constraints: const BoxConstraints(
                                   maxHeight: 48,
                                   maxWidth: 48,
                                 ),
@@ -144,7 +141,7 @@ class _ProjectCardSmallState extends State<ProjectCardSmall> {
                               ),
                               IconButton(
                                 padding: kcaInset0,
-                                constraints: BoxConstraints(
+                                constraints: const BoxConstraints(
                                   maxHeight: 48,
                                   maxWidth: 48,
                                 ),
@@ -215,16 +212,6 @@ class _ProjectCardSmallState extends State<ProjectCardSmall> {
                     )
                     .toList(),
               );
-              // print(
-              //     'wrap constraint width= ${constraint.maxWidth - contentHorizontalPadding * 2}');
-              // print('whole width = $wholeWidth');
-              // print('item length = ${widget.project!.techUsed.length}');
-              // print(widths);
-              // print(eachLineHaveHowManyItem);
-              // print(chipWidthList);
-              // print('wrap is 3 line =  $wrapIsOverflowed');
-              // print('single line height = $singleLineHeight');
-              // print('totalheight = $totalLineHeight');
 
               int maxLines = widget.constraint.maxWidth > 480 ? 5 : 4;
               final descSpan = TextSpan(
@@ -236,8 +223,7 @@ class _ProjectCardSmallState extends State<ProjectCardSmall> {
                 textDirection: TextDirection.ltr,
               );
               tp.layout(maxWidth: contentConstraint.maxWidth);
-              // int descCurrentLine = tp.computeLineMetrics().length;
-              // debugPrint(descCurrentLine.toString());
+
               return Padding(
                 padding:
                     EdgeInsets.symmetric(horizontal: contentHorizontalPadding),
@@ -285,7 +271,7 @@ class _ProjectCardSmallState extends State<ProjectCardSmall> {
                                               color: kccSecondary,
                                               fontWeight: kcfbold),
                                     ),
-                                    Icon(
+                                    const Icon(
                                       Icons.chevron_right,
                                       size: 24,
                                       color: kccSecondary,
@@ -310,9 +296,9 @@ class _ProjectCardSmallState extends State<ProjectCardSmall> {
                               Material(
                                 color: kccTransparent,
                                 child: IconButton(
-                                  constraints: BoxConstraints(
+                                  constraints: const BoxConstraints(
                                       maxWidth: 32, maxHeight: 32),
-                                  padding: EdgeInsets.symmetric(
+                                  padding: const EdgeInsets.symmetric(
                                       horizontal: 4, vertical: 4),
                                   splashRadius: 12,
                                   iconSize: 24,
@@ -326,7 +312,7 @@ class _ProjectCardSmallState extends State<ProjectCardSmall> {
                                             const Duration(milliseconds: 300),
                                         curve: Curves.easeInOutCubic);
                                   },
-                                  icon: Icon(
+                                  icon: const Icon(
                                     CupertinoIcons.chevron_left_circle,
                                     size: 24,
                                     color: kccSecondary,
@@ -358,7 +344,6 @@ class _ProjectCardSmallState extends State<ProjectCardSmall> {
                                 child: MaterialButton(
                                   shape: RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(4),
-                                    // side: BorderSide(color: kccSecondary),
                                   ),
                                   color: kccSecondary,
                                   onPressed: () async {
@@ -371,8 +356,6 @@ class _ProjectCardSmallState extends State<ProjectCardSmall> {
                                   child: Text(
                                     "View",
                                     style: kcfSBodySmall(),
-                                    //  textTheme.bodySmall?.copyWith(
-                                    //     fontWeight: kcfregular, fontSize: 18.sp),
                                   ),
                                 ),
                               )
@@ -416,7 +399,6 @@ class _ProjectCardSmallState extends State<ProjectCardSmall> {
                                 child: MaterialButton(
                                   shape: RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(4),
-                                    // side: BorderSide(color: kccSecondary),
                                   ),
                                   color: kccSecondary,
                                   onPressed: () async {
@@ -429,8 +411,6 @@ class _ProjectCardSmallState extends State<ProjectCardSmall> {
                                   child: Text(
                                     "Project Video",
                                     style: kcfSBodySmall(),
-                                    // textTheme.bodySmall?.copyWith(
-                                    //     fontWeight: kcfregular, fontSize: 18.sp),
                                   ),
                                 ),
                               )
@@ -441,20 +421,6 @@ class _ProjectCardSmallState extends State<ProjectCardSmall> {
                   ],
                 ),
               );
-              // return SizedBox(
-              //   height: double.maxFinite,
-              //   child: readMore || wrapIsOverflowed
-              //       ? SingleChildScrollView(
-              //           child: content(
-              //             wrap,
-              //             contentHorizontalPadding,
-              //           ),
-              //         )
-              //       : content(
-              //           wrap,
-              //           contentHorizontalPadding,
-              //         ),
-              // );
             }),
           )
         ],
@@ -470,18 +436,9 @@ class _ProjectCardSmallState extends State<ProjectCardSmall> {
         });
       },
       isExpanded: readMore,
-      // callback: onExpand,
-      // (val) {
-      //   print('readmore b4 set = $readMore');
-      //   setState(() {
-      //     readMore = !val;
-      //   });
-      //   print('readmore after set = $readMore');
-      // },
       trimLines: maxLines,
       trimCollapsedText: "Show more",
       trimExpandedText: "Show less",
-      // trimMode: TrimMode.Line,
       widget.project!.description,
       style: widget.constraint.maxWidth > 480
           ? kcfSBodyMedium().copyWith(fontWeight: kcfmedium)
@@ -515,25 +472,13 @@ class _ProjectCardSmallState extends State<ProjectCardSmall> {
                 });
               },
               isExpanded: readMore,
-              // callback: onExpand,
-              // (val) {
-              //   print('readmore b4 set = $readMore');
-              //   setState(() {
-              //     readMore = !val;
-              //   });
-              //   print('readmore after set = $readMore');
-              // },
               trimLines: 3,
               trimCollapsedText: "Show more",
               trimExpandedText: "Show less",
-              // trimMode: TrimMode.Line,
               widget.project!.description,
               style: kcfSBodySmall(),
             ),
           ),
-
-          //wrap,
-
           gaph(h: 7),
           Row(
             mainAxisSize: MainAxisSize.min,
@@ -544,7 +489,6 @@ class _ProjectCardSmallState extends State<ProjectCardSmall> {
                       child: MaterialButton(
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(4),
-                          // side: BorderSide(color: kccSecondary),
                         ),
                         color: kccSecondary,
                         onPressed: () async {
@@ -557,8 +501,6 @@ class _ProjectCardSmallState extends State<ProjectCardSmall> {
                         child: Text(
                           "View",
                           style: kcfSBodySmall(),
-                          //  textTheme.bodySmall?.copyWith(
-                          //     fontWeight: kcfregular, fontSize: 18.sp),
                         ),
                       ),
                     )
@@ -590,7 +532,6 @@ class _ProjectCardSmallState extends State<ProjectCardSmall> {
                       child: MaterialButton(
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(4),
-                          // side: BorderSide(color: kccSecondary),
                         ),
                         color: kccSecondary,
                         onPressed: () async {
@@ -603,8 +544,6 @@ class _ProjectCardSmallState extends State<ProjectCardSmall> {
                         child: Text(
                           "Project Video",
                           style: kcfSBodySmall(),
-                          // textTheme.bodySmall?.copyWith(
-                          //     fontWeight: kcfregular, fontSize: 18.sp),
                         ),
                       ),
                     )

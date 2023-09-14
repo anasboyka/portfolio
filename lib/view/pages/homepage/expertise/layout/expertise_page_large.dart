@@ -91,6 +91,7 @@ class _ExpertisePageLargeState extends State<ExpertisePageLarge> {
                         borderColor: kccSecondary,
                         selectedColor: kccSecondary,
                         pressedColor: kccSecondary,
+                        unselectedColor: kccTransparent,
                         groupValue: service == Service.mobileApp
                             ? knowledgeMobile
                             : knowledgeIot,

@@ -17,8 +17,6 @@ class InitTask {
     // init fcm utils (permission)
     WidgetsFlutterBinding.ensureInitialized();
 
-    // FirebaseOptions firebaseOptions = (Platform.isIOS || Platform.isMacOS)?
-    // const FirebaseOptions(apiKey: "AIzaSyD_cQ3apYaVmTYIHg-_mKvxEeJ6BDH-658", appId: "1:1099410234557:ios:426823b918f5c871e1ebd4", messagingSenderId: messagingSenderId, projectId: projectId)
     if (kIsWeb) {
       await Firebase.initializeApp(
           name: "portfolioDTM",
@@ -32,43 +30,8 @@ class InitTask {
       SystemChrome.setEnabledSystemUIMode(SystemUiMode.edgeToEdge);
       await Firebase.initializeApp();
     }
-    //setupLocator();
-    // await Firebase.initializeApp();
   }
-
-  // static List<SingleChildWidget> initProviderRoot() {
-  //   return [
-  //     ChangeNotifierProvider(
-  //       create: (_) => Package(),
-  //     ),
-  //     ChangeNotifierProvider(
-  //       create: (_) => Device(),
-  //     ),
-  //     ChangeNotifierProvider(
-  //       create: (_) => TodoProvider(),
-  //     )
-  //   ];
-  // }
-
-  // static Future<List<SingleChildWidget>> initProviderCtx(
-  //     BuildContext context) async {
-  //   // ConnectivityStatus connectivityStatus = await ConnectivityStatus().init();
-  //   // Screen screen = ScreenSetup.init(context);
-
-  //   return [
-  //     //ChangeNotifierProvider(create: (context) => connectivityStatus),
-  //     // StreamProvider(
-  //     //     create: (context) => InternetConnection().networkStatus,
-  //     //     initialData: NetworkStatus())
-  //   ];
-  // }
 }
 
 final sl = GetIt.instance;
-void setupLocator() {
-  // sl.registerSingletonAsync<DirInfo>(() async => await FileSetup.setup());
-  // sl.registerSingletonAsync<Package>(() async => await Package().init());
-  // sl.registerSingletonAsync<Device>(() async => await Device().init());
-  // sl.registerSingletonAsync<InternetConnection>(
-  //     () async => await InternetConnection().init());
-}
+void setupLocator() {}

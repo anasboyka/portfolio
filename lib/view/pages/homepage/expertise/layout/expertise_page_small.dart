@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-// import 'package:flutter_screenutil/flutter_screenutil.dart';
+
 import 'package:google_fonts/google_fonts.dart';
 import 'package:portfolio/common/common.dart';
 
@@ -23,14 +23,9 @@ class _ExpertisePageSmallState extends State<ExpertisePageSmall> {
         children: [
           gaph(h: 20),
           Text('Expertise',
-              style:
-                  //textTheme.displayLarge?.copyWith(fontSize: 50.sp),
-                  kcfLHeadlineSmall(r: false).copyWith(fontWeight: kcfbold)),
+              style: kcfLHeadlineSmall(r: false).copyWith(fontWeight: kcfbold)),
           Text("My skills and knowledge",
-              style: kcfSBodyMedium().copyWith(color: kccgrey1)
-              // textTheme.bodyMedium?.copyWith(
-              //     color: kccgrey1, fontWeight: kcfregular, fontSize: 20.sp),
-              ),
+              style: kcfSBodyMedium().copyWith(color: kccgrey1)),
           gaph(h: 16),
           AnimatedSwitcher(
             duration: const Duration(milliseconds: 500),
@@ -123,21 +118,10 @@ class _ExpertisePageSmallState extends State<ExpertisePageSmall> {
                   image,
                   fit: BoxFit.cover,
                   width: double.maxFinite,
-                  //width: double.maxFinite,
-                  //height: 562,
-                  //fit: BoxFit.contain,
                 ),
               ),
             ),
           ),
-          // ClipRRect(
-          //   borderRadius: BorderRadius.circular(8),
-          //   child: Image.asset(
-          //     image,
-          //     width: 390,
-          //     fit: BoxFit.cover,
-          //   ),
-          // ),
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -145,7 +129,6 @@ class _ExpertisePageSmallState extends State<ExpertisePageSmall> {
               Text(
                 content,
                 style: kcfSBodyMedium().copyWith(fontWeight: kcfmedium),
-                // textTheme.bodySmall?.copyWith(fontWeight: kcfregular),
               ),
               gaph(h: 12),
               SizedBox(
@@ -175,15 +158,6 @@ class _ExpertisePageSmallState extends State<ExpertisePageSmall> {
                                   ? kcfbold
                                   : kcfregular,
                         ),
-                        // style: kcfSBodyMedium().copyWith(
-                        //   fontWeight: service == Service.mobileApp
-                        //       ? knowledgeMobile == Knowledge.skills
-                        //           ? kcfbold
-                        //           : kcfregular
-                        //       : knowledgeIot == Knowledge.skills
-                        //           ? kcfbold
-                        //           : kcfregular,
-                        // ),
                       ),
                     ),
                     Knowledge.softwareUsed: Padding(
@@ -201,15 +175,6 @@ class _ExpertisePageSmallState extends State<ExpertisePageSmall> {
                                   ? kcfbold
                                   : kcfregular,
                         ),
-                        // style: kcfSBodyMedium().copyWith(
-                        //   fontWeight: service == Service.mobileApp
-                        //       ? knowledgeMobile == Knowledge.softwareUsed
-                        //           ? kcfbold
-                        //           : kcfregular
-                        //       : knowledgeIot == Knowledge.softwareUsed
-                        //           ? kcfbold
-                        //           : kcfregular,
-                        // ),
                       ),
                     ),
                   },
@@ -249,22 +214,6 @@ class _ExpertisePageSmallState extends State<ExpertisePageSmall> {
                           style: kcfSBodyLarge(),
                         ),
                       ),
-                      // Chip(
-                      //   backgroundColor: kccSecondary,
-                      //   label: Text(
-                      //     e,
-                      //   ),
-                      //   labelStyle: kcfSBodyLarge(),
-                      //   // textTheme.bodyLarge?.copyWith(
-                      //   //   fontWeight: kcfregular,
-                      //   //   fontSize: 24.sp,
-                      //   // ),
-                      //   labelPadding: EdgeInsets.zero,
-                      //   padding: const EdgeInsets.symmetric(
-                      //       horizontal: 10, vertical: 4),
-                      //   shape: RoundedRectangleBorder(
-                      //       borderRadius: BorderRadius.circular(30)),
-                      // ),
                     )
                     .toList(),
               ),

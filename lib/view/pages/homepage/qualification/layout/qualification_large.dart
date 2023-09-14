@@ -7,7 +7,7 @@ class QualificationLarge extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // final textTheme = Theme.of(context).textTheme;
+    
     return Container(
       width: double.maxFinite,
       color: kccSecondary,
@@ -16,11 +16,11 @@ class QualificationLarge extends StatelessWidget {
           gaph(h: 20.h),
           Text('Qualification',
               style: kcfLDisplayLarge().copyWith(fontWeight: kcfbold)
-              // textTheme.displayLarge?.copyWith(fontSize: 50.sp),
+              
               ),
           Text("My Education & experience", style: kcfLBodyMedium()
-              // textTheme.bodyMedium?.copyWith(
-              //     color: kccWhite, fontWeight: kcfregular, fontSize: 20.sp),
+              
+              
               ),
           gaph(h: 17.h),
           Padding(
@@ -67,8 +67,8 @@ class QualificationLarge extends StatelessWidget {
             child: Text('Experience',
                 style: kcfLDisplayMedium()
                     .copyWith(color: kccPrimary, fontWeight: kcfbold)
-                // textTheme.displayMedium?.copyWith(
-                //     fontWeight: kcfbold, color: kccPrimary, fontSize: 40.sp),
+                
+                
                 ),
           ),
           gaph(h: 54.h),
@@ -108,24 +108,24 @@ class QualificationLarge extends StatelessWidget {
         Text(
           role,
           style: kcfLHeadlineMedium().copyWith(color: kccPrimary),
-          // textTheme.headlineSmall
-          //     ?.copyWith(color: kccPrimary, fontSize: 28.sp),
+          
+          
         ),
         gaph(h: 12.h),
         Text(
           company,
           style: kcfLBodyMedium()
               .copyWith(color: kccBlack, fontStyle: FontStyle.italic),
-          // textTheme.bodyMedium?.copyWith(
-          //     color: kccBlack,
-          //     fontStyle: FontStyle.italic,
-          //     fontWeight: kcfregular,
-          //     fontSize: 20.sp),
+          
+          
+          
+          
+          
         ),
         gaph(h: 12.h),
         Text(duration, style: kcfLBodyMedium().copyWith(color: kccBlack4)
-            // textTheme.bodyMedium?.copyWith(
-            //     color: kccblack4, fontWeight: kcfregular, fontSize: 20.sp),
+            
+            
             ),
       ],
     );
@@ -143,8 +143,8 @@ class QualificationLarge extends StatelessWidget {
             child: Text(
               'Education',
               style: kcfLDisplayMedium().copyWith(color: kccPrimary),
-              //  textTheme.displayMedium?.copyWith(
-              //     fontWeight: kcfbold, color: kccPrimary, fontSize: 40.sp),
+              
+              
             ),
           ),
           gaph(h: 54.h),
@@ -176,27 +176,27 @@ class QualificationLarge extends StatelessWidget {
           education,
           style: kcfLHeadlineSmall()
               .copyWith(color: kccPrimary, fontWeight: kcfsemibold),
-          // textTheme.headlineSmall
-          //     ?.copyWith(color: kccPrimary, fontSize: 24.sp),
+          
+          
         ),
         gaph(h: 12.h),
         Text(school,
             style: kcfLBodyMedium()
                 .copyWith(color: kccBlack, fontStyle: FontStyle.italic)
-            // textTheme.bodyMedium?.copyWith(
-            //     color: kccBlack,
-            //     fontStyle: FontStyle.italic,
-            //     fontWeight: kcfregular,
-            //     fontSize: 20.sp),
+            
+            
+            
+            
+            
             ),
         gaph(h: 12.h),
         Text(duration, style: kcfLBodyMedium().copyWith(color: kccBlack4)
-            // textTheme.bodyMedium?.copyWith(
-            //     color: kccblack4, fontWeight: kcfregular, fontSize: 20.sp),
+            
+            
             ),
         gaph(h: 12.h),
         Text(result, style: kcfLBodyMedium().copyWith(color: kccBlack)
-            // textTheme.bodyMedium?.copyWith(color: kccBlack, fontSize: 20.sp),
+            
             ),
       ],
     );

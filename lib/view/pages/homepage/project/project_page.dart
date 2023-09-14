@@ -12,12 +12,8 @@ class ProjectPage extends StatefulWidget {
 }
 
 class _ProjectPageState extends State<ProjectPage> {
-  // final PageNumberNavigationController _controller1 =
-  //     PageNumberNavigationController();
-
   @override
   Widget build(BuildContext context) {
-    //final textTheme = Theme.of(context).textTheme;
     return AdaptiveLayout(
         mediumOrSmallMinWidth: 840,
         bodySmall: (context, constraint, screenSize) => ProjectPageSmall(

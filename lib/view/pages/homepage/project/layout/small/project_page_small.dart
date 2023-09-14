@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-// import 'package:flutter_screenutil/flutter_screenutil.dart';
+
 import 'package:portfolio/common/common.dart';
 import 'package:portfolio/view/pages/homepage/project/layout/small/project_page_content_small.dart';
 
@@ -25,9 +25,6 @@ class ProjectPageSmall extends StatelessWidget {
               style: kcfSBodyMedium().copyWith(color: kccgrey1),
             ),
             gaph(h: 20),
-            // Padding(
-            //   padding: EdgeInsets.symmetric(horizontal: 20),
-            //  child:
             Column(
               children: [
                 ProjectPageContentSmall(
@@ -36,7 +33,6 @@ class ProjectPageSmall extends StatelessWidget {
                 ),
               ],
             ),
-            //   )
             gaph(),
           ],
         ),
